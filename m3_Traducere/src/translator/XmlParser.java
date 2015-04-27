@@ -1,1 +1,5 @@
-in progress
+package translator;
+
+public class XmlParser{
+	
+}
