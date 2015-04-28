@@ -7,7 +7,7 @@ import translator.Downloader;
 
 public class DownloaderTest {
 	public static void main(String args[]){
-		String url = "http://www.google.com";
+		String url = "http://www.faravirusi.com";
 		String content = null;
 		
 		try {
@@ -18,7 +18,8 @@ public class DownloaderTest {
 			System.out.printf("%s is an invalid URL\n", url);
 		}
 		catch (IOException e){
-			System.out.printf("Error transfering %s\n", url);
+			
+			System.out.printf("Error transfering %s because %s\n", url, e.getMessage());
 		}
 	}
 }

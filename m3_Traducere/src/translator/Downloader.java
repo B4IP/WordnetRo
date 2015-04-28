@@ -8,17 +8,16 @@ import java.net.URL;
 
 public class Downloader{
 	private static char[] buffer = new char[1024];
-	/*Downloader(String link) throws MalformedURLException, IOException{
-		url = new URL(link);
-	}*/
 	
 	public static String download(String link) throws MalformedURLException, IOException{
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36");
 		URL url = new URL(link);
 		BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 		StringBuilder content = new StringBuilder();
-		
-		while (in.read(buffer, 0, buffer.length)>0){
-			content.append(buffer);
+
+		int read;
+		while ((read=in.read())!=-1){
+			content.append((char)read);
 		}
 		in.close();
 		

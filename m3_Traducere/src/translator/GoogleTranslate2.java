@@ -21,7 +21,7 @@ public class GoogleTranslate2 implements TranslateAPI{
 			System.out.printf("Charset not suported: %s\n", str);
 			return null;
 		}
-		return String.format("http://translate.google.com/translate_a/single?client=t&sl=%s&tl=%s&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&q=%s", source, target, encodedStr);
+		return String.format("https://translate.google.com/translate_a/single?client=t&sl=%s&tl=%s&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&q=%s", source, target, encodedStr);
 	}
 	
 	public String translate(String str){
