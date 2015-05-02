@@ -1,5 +1,7 @@
 package translator;
 
+import http.Downloader;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

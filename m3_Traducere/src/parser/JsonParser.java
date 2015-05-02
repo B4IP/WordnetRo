@@ -1,4 +1,5 @@
-package translator;
+package parser;
+
 
 public class JsonParser implements Parser{
 
