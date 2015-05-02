@@ -1,17 +1,17 @@
 package tests;
 
-import http.Downloader;
+import http.HttpGet;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class DownloaderTest {
+public class HttpGetTest {
 	public static void main(String args[]){
 		String url = "https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text=%27hello%27&To=%27ro%27&From=%27en%27";
 		String content = null;
 		
 		try {
-			content = Downloader.download(url);
+			content = HttpGet.download(url);
 			System.out.println(content);
 		}
 		catch (MalformedURLException e){

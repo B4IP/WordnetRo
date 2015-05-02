@@ -1,6 +1,10 @@
 package translator;
 
+import http.HttpGet;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
 public class GoogleTranslate2 implements TranslateAPI{
@@ -26,9 +30,22 @@ public class GoogleTranslate2 implements TranslateAPI{
 	
 	public String translate(String str){
 		String url = buildQuery(str);
+		String content = null;
 		
-		System.out.printf("Connecting to %s\n", url);
-		return "";
+		try{
+			content = HttpGet.download(url);
+			System.out.println(content);
+		}
+		catch (MalformedURLException e){
+			System.out.printf("Could not encode %s\n", str);
+			return null;
+		}
+		catch (IOException e){
+			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
+			return null;
+		}
+		
+		return content;
 	}
 
 }

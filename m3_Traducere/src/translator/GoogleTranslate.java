@@ -1,9 +1,10 @@
 package translator;
 
-import http.Downloader;
+import http.HttpGet;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
 public class GoogleTranslate implements TranslateAPI{
@@ -16,6 +17,7 @@ public class GoogleTranslate implements TranslateAPI{
 	
 	private String buildQuery(String str){
 		String encodedStr = null;
+		String url = "https://translate.google.com/m?hl=%s&sl=%s&q=%s";
 		
 		try{
 			encodedStr = URLEncoder.encode(str, java.nio.charset.StandardCharsets.UTF_8.toString());
@@ -24,7 +26,7 @@ public class GoogleTranslate implements TranslateAPI{
 			System.out.printf("Charset not suported: %s\n", str);
 			return null;
 		}
-		return String.format("https://translate.google.com/m?hl=%s&sl=%s&q=%s", target, source, encodedStr);
+		return String.format(url, target, source, encodedStr);
 	}
 	
 	public String translate(String str){
@@ -32,13 +34,18 @@ public class GoogleTranslate implements TranslateAPI{
 		String content = null;
 		
 		try{
-			content = Downloader.download(url);
+			content = HttpGet.download(url);
 			System.out.println(content);
+		}
+		catch (MalformedURLException e){
+			System.out.printf("Could not encode %s\n", str);
+			return null;
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
+			return null;
 		}
 		
-		return "";
+		return content;
 	}
 }

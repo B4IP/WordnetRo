@@ -11,7 +11,7 @@ public class HttpPostTest {
 		String content = null;
 	
 		try {
-			content = HttpPost.download(url);
+			content = HttpPost.download(url, "berendeanicolae@gmail.com", "IGCynGBUnY83apRHqQ2fut9OqUdw0x7oEl0SZNyxJR8");
 			System.out.println(content);
 		}
 		catch (MalformedURLException e){
