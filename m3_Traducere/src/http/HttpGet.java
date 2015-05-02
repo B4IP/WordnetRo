@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class HttpGet{
 	public static String download(String link) throws MalformedURLException, IOException{
-		//System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36");
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36");
 		URL url = new URL(link);
 		BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 		StringBuilder content = new StringBuilder();
