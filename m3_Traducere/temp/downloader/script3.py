@@ -13,6 +13,7 @@ params=urlencode( (('v',1.0),
                    ('q',text),
                    ('langpair',langpair),) )
 url=base_url+params
+print url
 content=urlopen(url).read()
 start_idx=content.find('"translatedText":"')+18
 translation=content[start_idx:]

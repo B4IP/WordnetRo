@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: latin-1 -*-
+import json
 import urllib2
 
 def translate(to_translate, to_langage="auto", langage="auto"):
