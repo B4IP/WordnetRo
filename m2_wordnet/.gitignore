@@ -1,0 +1,8 @@
+/bin/
+out.txt
+
+# Eclipse
+.classpath
+.project
+.settings/
+
