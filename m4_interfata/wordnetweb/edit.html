@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WordnetRO > Edit</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/import.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">		
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,300italic' rel='stylesheet' type='text/css'>
+	<script src="js/jquery-2.1.3.js"></script>
+</head>
+<body>
+	<div class="menu">
+		<a href="index.html" style="position:absolute">
+			<img src="img/logo.png" class="menu-logo">
+		</a>
+		<div class="prompt-menu prompt-menu--alternate">
+			<h1 class="prompt-menu-message">Salut,</h1>
+			<h1 class="prompt-menu-message prompt-menu-message--alternate">Dacian Spinu</h1>
+			<a href="edit.html" class="prompt-menu-buttons">Edit</a>
+			<a href="import.html" class="prompt-menu-buttons">Import</a>
+			<a href="#" class="prompt-menu-buttons log-out">Log out</a>
+		</div>
+		<div class="initial-menu initial-menu--alternate">
+			<input class="menu-input" type="text" placeholder="Utilizator">
+			<input class="menu-input" type="password" placeholder="Parola">						
+			<ul class="menu-buttons">
+				<li class="menu-buttons-item menu-buttons-item--login">
+					<a href="#" class="selected">
+						Login
+					</a>
+				</li>
+				<li class="menu-buttons-item">
+					<a href="#">
+						Register
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="header-intro header-intro--alternate" >
+		<div class="header-info">
+			<h1 class="header-title">
+				Salutari si multumim pentru interesul acordat in imbunatatiarea Wordnet-ului romanesc.
+			</h1>
+			<h2 class="header-subtitle">
+				Completeaza formularul pentru a edita informatii despre un cuvant existent.
+			</h2>
+			<input class="search-input" type="text" placeholder="Introdu cuvantul ...">
+			<textarea placeholder="Introdu noul inteles ... "class="search-input search-input--block"></textarea>
+			<textarea placeholder="Introdu o propozitie ce contine cuvantul ... "class="search-input search-input--block"></textarea>			
+			<input class="submit-button"type="submit" value="Update WordnetRO">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	jQuery = $;
+	$(window).on('load', function () {
+		$('.header-info').css('transform', 'scale(1)')
+		$('.header-info').css('opacity', '1')
+		setTimeout(function(){ 
+			$('.menu').css('top', 0);
+			$('.menu').css('opacity', 1);
+			$('.prompt-menu--alternate').css('margin-top',0)
+		},1000);
+
+		setTimeout(function(){
+			$('.search-input').css('opacity', '1');
+			$('.search-input').css('margin-top', '30px');
+		},1500)
+
+		setTimeout(function(){
+			$('.submit-button').css('opacity', '1');
+			$('.submit-button').css('margin-top', '20px');
+		},2000)
+	})
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 150) {
+			$('.menu').css('background-color', 'rgba(84,87,129,0.9)');
+		}
+		else {
+			$('.menu').css('background-color', 'transparent');
+		}
+	})
+
+	$('.submit-button').on('click', function(){
+		    $('html, body').animate({
+        scrollTop: $(window).height()
+    }, 700);
+	})
+
+	$('.menu-buttons-item--login').on('click', function(){
+		$('.initial-menu').css('margin-top','-100px')
+		setTimeout(function(){
+			$('.prompt-menu').css('display', 'initial');
+		},200)
+		setTimeout(function(){
+			$('.prompt-menu').css('margin-top', '0');
+		},750)
+	})
+
+	$('.log-out').on('click', function(){
+		$('.prompt-menu').css('margin-top', '-100px');
+		setTimeout(function(){
+			$('.initial-menu').css('margin-top','0px')
+			$('.prompt-menu').css('display', 'none');
+		},750)
+	})
+</script>
+</html>
