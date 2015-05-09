@@ -34,7 +34,6 @@ public class GoogleTranslate2 implements TranslateAPI{
 		
 		try{
 			content = HttpGet.download(url);
-			System.out.println(content);
 		}
 		catch (MalformedURLException e){
 			System.out.printf("Could not encode %s\n", str);

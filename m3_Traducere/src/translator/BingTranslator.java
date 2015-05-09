@@ -34,7 +34,7 @@ public class BingTranslator implements TranslateAPI{
 		String url = "https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text=%s&To=%s&From=%s"; 
 		
 		try{
-			encodedStr = URLEncoder.encode(String.format("'%s'", encodedStr), java.nio.charset.StandardCharsets.UTF_8.toString());
+			encodedStr = URLEncoder.encode(String.format("'%s'", str), java.nio.charset.StandardCharsets.UTF_8.toString());
 		}
 		catch (Exception e){
 			System.out.printf("Charset not suported: %s\n", str);

@@ -5,7 +5,7 @@ import translator.GoogleTranslate;
 import translator.GoogleTranslate2;
 import translator.TranslateAPI;
 
-public class TranslateTest {
+public class TranslateTest{
 	public static void main(String args[]){
 		TranslateAPI tr = null;
 		
