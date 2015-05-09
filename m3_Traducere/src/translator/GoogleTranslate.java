@@ -7,6 +7,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 public class GoogleTranslate implements TranslateAPI{
 	String source, target;
 
@@ -45,6 +50,7 @@ public class GoogleTranslate implements TranslateAPI{
 			return null;
 		}
 		
-		return content;
+		Document doc = Jsoup.parse(content);
+		return doc.getElementsByClass("t0").text();
 	}
 }

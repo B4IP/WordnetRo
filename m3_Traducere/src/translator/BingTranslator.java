@@ -7,6 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 public class BingTranslator implements TranslateAPI{
 	private static String user = "berendeanicolae@gmail.com";
 	private static String passw = "IGCynGBUnY83apRHqQ2fut9OqUdw0x7oEl0SZNyxJR8";
@@ -64,6 +67,7 @@ public class BingTranslator implements TranslateAPI{
 			return null;
 		}
 		
-		return content;
+		Document doc = Jsoup.parse(content);
+		return doc.getElementsByTag("content").text();
 	}
 }

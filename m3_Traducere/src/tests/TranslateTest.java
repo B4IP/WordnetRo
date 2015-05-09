@@ -9,7 +9,7 @@ public class TranslateTest{
 	public static void main(String args[]){
 		TranslateAPI tr = null;
 		
-		tr = new BingTranslator("ro", "en");
-		System.out.printf("%s", tr.translate("Azi e luni"));
+		tr = new BingTranslator("en", "ro");
+		System.out.printf("%s", tr.translate("However, I am running into a problem since my parameterType is an array."));
 	}
 }
