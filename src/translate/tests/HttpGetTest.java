@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 
 public class HttpGetTest {
 	public static void main(String args[]){
-		String url = "https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text=%27hello%27&To=%27ro%27&From=%27en%27";
+		String url = "http://students.info.uaic.ro/~nicolae.berendea/other/alfabet.html";
 		String content = null;
 		
 		try {
@@ -18,7 +18,6 @@ public class HttpGetTest {
 			System.out.printf("%s is an invalid URL\n", url);
 		}
 		catch (IOException e){
-			
 			System.out.printf("Error transfering %s because %s\n", url, e.getMessage());
 		}
 	}
