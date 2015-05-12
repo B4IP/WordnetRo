@@ -19,8 +19,7 @@ public class HttpGet{
 
 		int read;
 		while ((read=in.read())!=-1){
-			content.append(read);
-			content.append(" ");
+			content.append((char)read);
 		}
 		in.close();
 		
