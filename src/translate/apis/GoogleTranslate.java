@@ -1,6 +1,6 @@
-package apis;
+package translate.apis;
 
-import http.HttpGet;
+import apis.TranslateAPI;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -9,8 +9,7 @@ import java.net.URLEncoder;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import translate.http.HttpGet;
 
 public class GoogleTranslate implements TranslateAPI{
 	String source, target;

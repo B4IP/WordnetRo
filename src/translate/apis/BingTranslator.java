@@ -1,6 +1,6 @@
-package apis;
+package translate.apis;
 
-import http.HttpPost;
+import apis.TranslateAPI;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import translate.http.HttpPost;
 
 public class BingTranslator implements TranslateAPI{
 	private static String user = "berendeanicolae@gmail.com";

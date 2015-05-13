@@ -1,9 +1,9 @@
-package tests;
+package translate.tests;
 
-import http.HttpPost;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import translate.http.HttpPost;
 
 public class HttpPostTest {
 	public static void main(String args[]){

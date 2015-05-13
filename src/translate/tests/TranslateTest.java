@@ -1,9 +1,9 @@
-package tests;
+package translate.tests;
 
-import apis.BingTranslator;
-import apis.GoogleTranslate;
-import apis.GoogleTranslate2;
 import apis.TranslateAPI;
+import translate.apis.BingTranslator;
+import translate.apis.GoogleTranslate;
+import translate.apis.GoogleTranslate2;
 
 public class TranslateTest{
 	public static void main(String args[]){

@@ -1,9 +1,9 @@
-package tests;
+package translate.tests;
 
-import http.HttpGet;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import translate.http.HttpGet;
 
 public class HttpGetTest {
 	public static void main(String args[]){

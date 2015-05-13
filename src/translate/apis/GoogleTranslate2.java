@@ -1,11 +1,12 @@
-package apis;
+package translate.apis;
 
-import http.HttpGet;
+import apis.TranslateAPI;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
+import translate.http.HttpGet;
 
 public class GoogleTranslate2 implements TranslateAPI{
 	String source, target;
