@@ -16,7 +16,8 @@ https://www.google.com/search?num=20&q=translate+a+word+given+a+context+substitu
 
 Cross Lingual Lexical Substitution
 https://www.google.com/search?num=20&site=&source=hp&q=Cross+Lingual+Lexical+Substitution&oq=Cross+Lingual+Lexical+Substitution&gs_l=hp.3..0i22i30l2.2355.2355.0.2692.3.3.0.0.0.0.316.678.0j2j0j1.3.0.msedr...0...1c.1.64.hp..2.1.178.0.YHso5fXB3mY
-
+ 
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.352.3685&rep=rep1&type=pdf
 http://www.aclweb.org/anthology/S10-1054
 
 normalize levenstein distance 1-distance(a,b)/max(a.length, b.length) (The probability the words match)

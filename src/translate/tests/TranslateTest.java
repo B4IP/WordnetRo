@@ -10,6 +10,6 @@ public class TranslateTest{
 		TranslateAPI tr = null;
 		
 		tr = new BingTranslator("en", "ro");
-		System.out.printf("%s", tr.translate("However, I am running into a problem since my parameterType is an array."));
+		System.out.printf("%s", tr.translate("I love my blue car."));
 	}
 }
