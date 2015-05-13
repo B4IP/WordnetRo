@@ -1,4 +1,4 @@
-package translator;
+package translate.translator;
 
 public class Translator{
 	public String translate(String word, String sentence){
