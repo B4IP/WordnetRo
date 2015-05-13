@@ -1,4 +1,4 @@
-package translator;
+package apis;
 
 import http.HttpGet;
 
@@ -7,22 +7,16 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-public class GoogleTranslate implements TranslateAPI{
+public class GoogleTranslate2 implements TranslateAPI{
 	String source, target;
 
-	public GoogleTranslate(String source, String target){
+	public GoogleTranslate2(String source, String target){
 		this.source = source;
 		this.target = target;
 	}
 	
 	private String buildQuery(String str){
 		String encodedStr = null;
-		String url = "https://translate.google.com/m?hl=%s&sl=%s&q=%s";
 		
 		try{
 			encodedStr = URLEncoder.encode(str, java.nio.charset.StandardCharsets.UTF_8.toString());
@@ -31,7 +25,7 @@ public class GoogleTranslate implements TranslateAPI{
 			System.out.printf("Charset not suported: %s\n", str);
 			return null;
 		}
-		return String.format(url, target, source, encodedStr);
+		return String.format("https://translate.google.com/translate_a/single?client=t&sl=%s&tl=%s&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&q=%s", source, target, encodedStr);
 	}
 	
 	public String translate(String str){
@@ -50,7 +44,7 @@ public class GoogleTranslate implements TranslateAPI{
 			return null;
 		}
 		
-		Document doc = Jsoup.parse(content);
-		return doc.getElementsByClass("t0").text();
+		return content;
 	}
+
 }

@@ -1,4 +1,4 @@
-package translator;
+package apis;
 
 import http.HttpPost;
 
