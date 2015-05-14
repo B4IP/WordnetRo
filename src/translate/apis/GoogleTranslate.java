@@ -33,15 +33,15 @@ public class GoogleTranslate implements TranslateAPI{
 		return String.format(url, target, source, encodedStr);
 	}
 	
-	public String translate(String str){
-		String url = buildQuery(str);
+	public Translation getCandidates(String word){
+		String url = buildQuery(word);
 		String content = null;
 		
 		try{
 			content = HttpGet.download(url);
 		}
 		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", str);
+			System.out.printf("Could not encode %s\n", word);
 			return null;
 		}
 		catch (IOException e){
@@ -50,6 +50,8 @@ public class GoogleTranslate implements TranslateAPI{
 		}
 		
 		Document doc = Jsoup.parse(content);
-		return doc.getElementsByClass("t0").text();
+		Translation translation = new Translation(word);
+		translation.addTranslation(doc.getElementsByClass("t0").text());
+		return translation;
 	}
 }

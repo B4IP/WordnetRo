@@ -5,6 +5,7 @@ import translate.apis.TranslateAPI;
 import translate.apis.BingTranslator;
 import translate.apis.GoogleTranslate;
 import translate.apis.GoogleTranslate2;
+import translate.apis.Translation;
 import translate.exception.InvalidTranslatorOptionException;
 
 public class TranslateAPIFactory {
@@ -36,9 +37,9 @@ public class TranslateAPIFactory {
      * @param toLang
      * @return 
      */
-    public static String atomicTranslate(String phrase, TranslateAPIType engine, String fromLang, String toLang) {
+    public static Translation atomicTranslate(String word, TranslateAPIType engine, String fromLang, String toLang) {
         TranslateAPI instance = getAPIInstance(engine, fromLang, toLang);
-        return instance.translate(phrase);
+        return instance.getCandidates(word);
     }
     
 }

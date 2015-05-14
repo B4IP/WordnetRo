@@ -2,21 +2,17 @@ package translate.apis;
 
 import java.util.ArrayList;
 
-public class WordTranslation {
+public class Translation {
 	private String src;
-	private ArrayList<String> dst;
+	private ArrayList<String> dst; 
 	
-	public WordTranslation(String src){
+	public Translation(String src){
 		this.src = src;
 		dst = new ArrayList<>();
 	}
 	
 	public String getSrc() {
 		return src;
-	}
-	
-	private void update(){
-		//update score...
 	}
 	
 	public void addTranslation(String translation){

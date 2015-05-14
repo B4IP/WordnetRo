@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.util.List;
+
 import translate.http.HttpGet;
 import translate.util.GoogleTranslate2ResultParser;
 import translate.util.entity.Translation;
@@ -70,5 +71,12 @@ public class GoogleTranslate2 implements TranslateAPI{
         
         return GoogleTranslate2ResultParser.extractPartialTranslations(content);
     }
+
+	@Override
+	public translate.apis.Translation getCandidates(String word) {
+		// TODO Auto-generated method stub
+		translate.apis.Translation translation = new translate.apis.Translation(word);
+		return translation;
+	}
     
 }

@@ -47,20 +47,20 @@ public class BingTranslator implements TranslateAPI{
 		return String.format(url, encodedStr, target, source);
 	}
 	
-	public String translate(String str){
+	public Translation getCandidates(String word){
 		if (source==null || target==null){
 			return null;
 		}
 		
 		
-		String url = buildQuery(str);
+		String url = buildQuery(word);
 		String content = null;
 		
 		try{
 			content = HttpPost.download(url, user, passw);
 		}
 		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", str);
+			System.out.printf("Could not encode %s\n", word);
 			return null;
 		}
 		catch (IOException e){
@@ -69,6 +69,8 @@ public class BingTranslator implements TranslateAPI{
 		}
 		
 		Document doc = Jsoup.parse(content);
-		return doc.getElementsByTag("content").text();
+		Translation translation = new Translation(word);
+		translation.addTranslation(doc.getElementsByTag("content").text());
+		return translation;
 	}
 }
