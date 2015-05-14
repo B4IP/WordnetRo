@@ -1,5 +1,6 @@
 package translate.apis;
 
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
@@ -11,21 +12,24 @@ import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
+import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class WordReference implements TranslateAPI{
-	private String buildQuery(String str){
+public class Gsp implements TranslateAPI{
+	private static String buildQuery(String str) {
 		String encodedStr = null;
-		
-		try{
-			encodedStr = URLEncoder.encode(str, java.nio.charset.StandardCharsets.UTF_8.toString());
-		}
-		catch (UnsupportedEncodingException e){
-			System.out.printf("Charset not suported: %s\n", str); //translate.google.com/#auto/ro/car
+
+		try {
+			encodedStr = URLEncoder.encode(str,
+					java.nio.charset.StandardCharsets.UTF_8.toString());
+		} catch (UnsupportedEncodingException e) {
+			System.out.printf("Charset not suported: %s\n", str); // translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format("http://www.wordreference.com/enro/%s", encodedStr);
+		return String.format("http://ro-en.gsp.ro/index.php?q=%s", encodedStr);
 	}
-	
+
 	@Override
 	public Translation getCandidates(String word) {
 		String url = buildQuery(word);
@@ -46,16 +50,17 @@ public class WordReference implements TranslateAPI{
 
 		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
-		
-		String item = null;
-		Elements elem = doc.select("td.ToWrd");
-		for (Element el : elem){
-			item = el.text().replaceAll(" s.f.| s.n.", "");
-			//if (!translation.contains(item))
-			translation.add(item);
+
+		Elements elem = doc.select("table>tbody>tr");
+
+		for (Element el : elem) {
+			Elements tds = el.children();
+			// System.out.println(tds.get(3).text());
+			//if (!translation.contains(tds.get(3).text())) 
+			translation.add(tds.get(3).text());
 		}
 		
 		return translation;
 	}
-	
+
 }

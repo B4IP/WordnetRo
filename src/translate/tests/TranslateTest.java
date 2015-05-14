@@ -1,16 +1,19 @@
 package translate.tests;
 
 import translate.apis.TranslateAPI;
-import translate.apis.GoogleTranslate;
-import translate.apis.GoogleTranslate2;
 import translate.apis.Translation;
+import translate.factory.API;
+import translate.factory.TranslateAPIFactory;
 
 public class TranslateTest{
 	public static void main(String args[]){
 		TranslateAPI tr = null;
 		
-		tr = new GoogleTranslate("en", "ro");
-		Translation c = tr.getCandidates("raw");
+		tr = TranslateAPIFactory.getAPIInstance(API.GoogleTranslate, "en", "ro");
+		Translation candidates = tr.getCandidates("raw");
+		for (String candidate : candidates){
+			System.out.println(candidate);
+		}
 		/*
 		System.out.printf("%s\n", tr.translate("Santa and tooth fairy aren't real"));
                 

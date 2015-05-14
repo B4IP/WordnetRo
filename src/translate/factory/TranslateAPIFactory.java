@@ -16,7 +16,7 @@ public class TranslateAPIFactory {
      * @param toLang Same as fromLang parameter
      * @return a new Instance which will translate all input from fromLang to toLang.
      */
-    public static TranslateAPI getAPIInstance(TranslateAPIType type, String fromLang, String toLang) {
+    public static TranslateAPI getAPIInstance(API type, String fromLang, String toLang) {
         switch (type) {
             case BingTranslate:
                 return new BingTranslator(fromLang, toLang);
@@ -37,7 +37,7 @@ public class TranslateAPIFactory {
      * @param toLang
      * @return 
      */
-    public static Translation atomicTranslate(String word, TranslateAPIType engine, String fromLang, String toLang) {
+    public static Translation atomicTranslate(String word, API engine, String fromLang, String toLang) {
         TranslateAPI instance = getAPIInstance(engine, fromLang, toLang);
         return instance.getCandidates(word);
     }

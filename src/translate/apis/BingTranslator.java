@@ -70,7 +70,7 @@ public class BingTranslator implements TranslateAPI{
 		
 		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
-		translation.addTranslation(doc.getElementsByTag("content").text());
+		translation.add(doc.getElementsByTag("content").text());
 		return translation;
 	}
 }

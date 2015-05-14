@@ -1,8 +1,9 @@
 package translate.apis;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Translation {
+public class Translation implements Iterable<String>{
 	private String src;
 	private ArrayList<String> dst; 
 	
@@ -15,13 +16,19 @@ public class Translation {
 		return src;
 	}
 	
-	public void addTranslation(String translation){
-		dst.add(translation);
+	public void add(String translation){
+		if (!dst.contains(translation))
+			dst.add(translation);
 	}
 	
-	public void addTranslations(ArrayList<String> translations){
+	public void add(ArrayList<String> translations){
 		for (String translation : translations){
-			addTranslation(translation);
+			add(translation);
 		}
+	}
+
+	@Override
+	public Iterator<String> iterator() {
+		return dst.iterator();
 	}
 }
