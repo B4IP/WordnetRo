@@ -1,6 +1,6 @@
 package translate.apis;
 
-import apis.TranslateAPI;
+import translate.apis.TranslateAPI;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

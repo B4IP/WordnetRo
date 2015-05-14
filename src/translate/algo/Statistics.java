@@ -1,4 +1,4 @@
-package algo;
+package translate.algo;
 
 public class Statistics {
 }

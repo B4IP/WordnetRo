@@ -1,6 +1,6 @@
-package tests;
+package translate.tests;
 
-import algo.Levenstein;
+import translate.algo.Levenstein;
 
 public class LevensteinTest {
 	public static void main(String args[]){

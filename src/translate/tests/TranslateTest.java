@@ -1,6 +1,6 @@
 package translate.tests;
 
-import apis.TranslateAPI;
+import translate.apis.TranslateAPI;
 import java.util.List;
 import translate.apis.GoogleTranslate2;
 import translate.util.entity.Translation;

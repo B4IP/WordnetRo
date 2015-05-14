@@ -1,4 +1,4 @@
-package tests;
+package wordnet.tests;
 
 import java.io.File;
 import java.io.FileWriter;

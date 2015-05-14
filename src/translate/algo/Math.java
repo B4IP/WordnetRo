@@ -1,4 +1,4 @@
-package algo;
+package translate.algo;
 
 public class Math {
 	public static int min(int ... elements){

@@ -1,7 +1,7 @@
 
 package translate.factory;
 
-import apis.TranslateAPI;
+import translate.apis.TranslateAPI;
 import translate.apis.BingTranslator;
 import translate.apis.GoogleTranslate;
 import translate.apis.GoogleTranslate2;

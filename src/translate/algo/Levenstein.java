@@ -1,4 +1,4 @@
-package algo;
+package translate.algo;
 
 public class Levenstein {
 	static private int d1[]=null, d2[]=null;
