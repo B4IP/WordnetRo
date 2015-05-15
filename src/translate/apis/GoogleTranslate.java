@@ -16,7 +16,7 @@ import org.jsoup.select.Elements;
 import translate.http.HttpGet;
 
 public class GoogleTranslate implements TranslateAPI{
-	String source, target;
+	private String source, target;
 
 	public GoogleTranslate(String source, String target){
 		this.source = source;

@@ -9,7 +9,7 @@ public class TranslateTest{
 	public static void main(String args[]){
 		TranslateAPI tr = null;
 		
-		tr = TranslateAPIFactory.getAPIInstance(API.GoogleTranslate, "en", "ro");
+		tr = TranslateAPIFactory.getAPIInstance(API.Hallo, "en", "ro");
 		Translation candidates = tr.getCandidates("raw");
 		for (String candidate : candidates){
 			System.out.println(candidate);

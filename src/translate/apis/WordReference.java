@@ -13,6 +13,13 @@ import translate.http.HttpGet;
 
 
 public class WordReference implements TranslateAPI{
+	private String source, target;
+
+	public WordReference(String source, String target){
+		this.source = source;
+		this.target = target;
+	}
+	
 	private String buildQuery(String str){
 		String encodedStr = null;
 		
@@ -23,7 +30,7 @@ public class WordReference implements TranslateAPI{
 			System.out.printf("Charset not suported: %s\n", str); //translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format("http://www.wordreference.com/enro/%s", encodedStr);
+		return String.format("http://www.wordreference.com/%s%s/%s", target, source, encodedStr);
 	}
 	
 	@Override

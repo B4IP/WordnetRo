@@ -1,11 +1,14 @@
 
 package translate.factory;
 
+import translate.apis.Gsp;
+import translate.apis.Hallo;
 import translate.apis.TranslateAPI;
 import translate.apis.BingTranslator;
 import translate.apis.GoogleTranslate;
-import translate.apis.GoogleTranslate2;
+//import translate.apis.GoogleTranslate2;
 import translate.apis.Translation;
+import translate.apis.WordReference;
 import translate.exception.InvalidTranslatorOptionException;
 
 public class TranslateAPIFactory {
@@ -18,12 +21,18 @@ public class TranslateAPIFactory {
      */
     public static TranslateAPI getAPIInstance(API type, String fromLang, String toLang) {
         switch (type) {
-            case BingTranslate:
+            case Bing:
                 return new BingTranslator(fromLang, toLang);
-            case GoogleTranslate:
+            case Google:
                 return new GoogleTranslate(fromLang, toLang);
-            case GoogleTranslate2:
-                return new GoogleTranslate2(fromLang, toLang);
+            /*case GoogleTranslate2:
+                return new GoogleTranslate2(fromLang, toLang);*/
+            case Gsp:
+            	return new Gsp(fromLang, toLang);
+            case Hallo:
+            	return new Hallo(fromLang, toLang);
+            case WordReference:
+            	return new WordReference(fromLang, toLang);
             default:
                 throw new InvalidTranslatorOptionException();
         }
@@ -31,7 +40,7 @@ public class TranslateAPIFactory {
     
     /**
      * 
-     * @param phrase
+     * @param word
      * @param engine
      * @param fromLang
      * @param toLang
