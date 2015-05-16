@@ -1,6 +1,6 @@
 package translate.apis;
 
-import translate.apis.TranslateAPI;
+import translate.apis.WordTranslator;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-public class GoogleTranslate implements TranslateAPI{
+public class GoogleTranslate implements WordTranslator, SentenceTranslator{
 	private String source, target;
 
 	public GoogleTranslate(String source, String target){
@@ -36,7 +36,8 @@ public class GoogleTranslate implements TranslateAPI{
 		}
 		return String.format(url, target, source, encodedStr);
 	}
-	
+
+	@Override
 	public Translation getCandidates(String word){
 		String url = buildQuery(word);
 		String content = null;
@@ -75,5 +76,26 @@ public class GoogleTranslate implements TranslateAPI{
 			}
 		}
 		return translation;
+	}
+
+	@Override
+	public String translateSentence(String sentence) {
+		String url = buildQuery(sentence);
+		String content = null;
+		
+		try{
+			content = HttpGet.download(url);
+		}
+		catch (MalformedURLException e){
+			System.out.printf("Could not encode %s\n", sentence);
+			return null;
+		}
+		catch (IOException e){
+			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
+			return null;
+		}
+		
+		Document doc = Jsoup.parse(content);
+		return doc.getElementsByClass("t0").text();
 	}
 }

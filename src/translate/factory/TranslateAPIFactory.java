@@ -3,7 +3,7 @@ package translate.factory;
 
 import translate.apis.Gsp;
 import translate.apis.Hallo;
-import translate.apis.TranslateAPI;
+import translate.apis.WordTranslator;
 import translate.apis.BingTranslator;
 import translate.apis.GoogleTranslate;
 //import translate.apis.GoogleTranslate2;
@@ -19,7 +19,7 @@ public class TranslateAPIFactory {
      * @param toLang Same as fromLang parameter
      * @return a new Instance which will translate all input from fromLang to toLang.
      */
-    public static TranslateAPI getAPIInstance(API type, String fromLang, String toLang) {
+    public static WordTranslator getAPIInstance(API type, String fromLang, String toLang) {
         switch (type) {
             case Bing:
                 return new BingTranslator(fromLang, toLang);
@@ -47,7 +47,7 @@ public class TranslateAPIFactory {
      * @return 
      */
     public static Translation atomicTranslate(String word, API engine, String fromLang, String toLang) {
-        TranslateAPI instance = getAPIInstance(engine, fromLang, toLang);
+        WordTranslator instance = getAPIInstance(engine, fromLang, toLang);
         return instance.getCandidates(word);
     }
     

@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-public class Gsp implements TranslateAPI{
+public class Gsp implements WordTranslator{
 	String source, target;
 	
 	public Gsp(String source, String target){

@@ -14,7 +14,7 @@ import translate.http.HttpGet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hallo implements TranslateAPI {
+public class Hallo implements WordTranslator {
 	private String source, target;
 	
 	public Hallo(String source, String target){

@@ -1,13 +1,13 @@
 package translate.tests;
 
-import translate.apis.TranslateAPI;
+import translate.apis.WordTranslator;
 import translate.apis.Translation;
 import translate.factory.API;
 import translate.factory.TranslateAPIFactory;
 
 public class TranslateTest{
 	public static void main(String args[]){
-		TranslateAPI tr = null;
+		WordTranslator tr = null;
 		
 		tr = TranslateAPIFactory.getAPIInstance(API.Hallo, "en", "ro");
 		Translation candidates = tr.getCandidates("raw");

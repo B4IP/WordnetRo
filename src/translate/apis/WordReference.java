@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import translate.http.HttpGet;
 
 
-public class WordReference implements TranslateAPI{
+public class WordReference implements WordTranslator{
 	private String source, target;
 
 	public WordReference(String source, String target){
