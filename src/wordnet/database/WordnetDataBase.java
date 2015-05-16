@@ -32,20 +32,6 @@ public class WordnetDataBase {
         }
     }
 
-    public static void startDataBaseConnection() throws SQLException {
-        try {
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            Properties props = new Properties();
-            props.setProperty("user", "mihai");
-            props.setProperty("password", "mihai");
-            connection = DriverManager.getConnection(url, props);
-            System.out.println("Am pornit BD!");
-        } catch (SQLException error) {
-            System.out.println("Eroare la deschiderea bazei de date!");
-            System.exit(0);
-        }
-    }
-
     public static void closeDataBaseConnection() throws SQLException {
         try {
             connection.close();
