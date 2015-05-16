@@ -5,12 +5,10 @@
  */
 package tests;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+import translate.algo.Levenstein;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
