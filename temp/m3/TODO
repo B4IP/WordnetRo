@@ -1,0 +1,33 @@
+1) Extract the response from each translation API we use (google 1 and 2, bing)
+    1.1 Decide what we want to return from the trasnaltion api (only a translation or also some other info)
+    1.2 implement it
+
+2) Pentru a limita multimea de potentiale traduceri, putem folosi text segmentation (sa impartim propozitia in unitati cu sens constant indiferent de context).
+    poate ceva de genul asta http://en.wikipedia.org/wiki/Text_segmentation
+    
+3) pentru a traduce cuvantul in alta limba, profesorul a propus sa inlocuim cuvantul cautat cu altul si sa urmarim cum se schimba traducerea.
+    (Lexical substitution)
+    
+    poate mai avem alte metode aici http://www.aclweb.org/anthology/S10-1002
+
+
+translate a word given a context substituting    
+https://www.google.com/search?num=20&q=translate+a+word+given+a+context+substituting&oq=translate+a+word+given+a+context+substituting&gs_l=serp.3..33i21.38645.42918.0.43080.13.13.0.0.0.0.169.1223.0j8.8.0.msedr...0...1c.1.64.serp..9.4.624.4iMLrFVfj60
+
+Cross Lingual Lexical Substitution
+https://www.google.com/search?num=20&site=&source=hp&q=Cross+Lingual+Lexical+Substitution&oq=Cross+Lingual+Lexical+Substitution&gs_l=hp.3..0i22i30l2.2355.2355.0.2692.3.3.0.0.0.0.316.678.0j2j0j1.3.0.msedr...0...1c.1.64.hp..2.1.178.0.YHso5fXB3mY
+ 
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.352.3685&rep=rep1&type=pdf
+http://www.aclweb.org/anthology/S10-1054
+
+normalize levenstein distance 1-distance(a,b)/max(a.length, b.length) (The probability the words match)
+
+
+
+
+De extras info de la:
+http://www.wordreference.com/enro/raw
+https://www.dictio.ro/dictionar-englez-roman
+http://dictionare.com/phpdic/enro40.php?field0=raw
+http://hallo.ro/search.do?d=en&l=ro&type=both&query=raw
+http://ro-en.gsp.ro/index.php?d=e&q=T-shirt

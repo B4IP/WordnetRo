@@ -1,0 +1,39 @@
+MODULE 1 is responsible with the management of the project
+	1. Vlad Lihaceanu
+	2. Stefan Statescu
+	3. Ruxandra Bucos
+	4. Paul Bencko
+
+MODULE 2 is responsible with the Wordnet API
+	1. Andrei Pricop
+	2. Andreea Cotruta
+	3. Florin Tudor
+	4. Teodor Jalba
+	5. Mihai Campan
+	6. Ana-Maria Petrita 
+
+MODULE 3 is responsible with synsets, relations between words and 
+	 Google Translate API
+	1. Calin Vlad
+	2. Ovidiu Rusu
+	3. Nicu Berendea
+	4. Serban Sandu
+	5. Paul Hodoreanu
+	6. Florin Fanaru
+	7. Vlad Tacutanu
+
+MODULE 4 is responsible with the interface and corrections
+	1. Alin Panaitiu
+	2. Dragos Ivan 
+	3. Rares Drugu
+	4. Andrei Papara
+	5. Emilian Mitocariu
+	6. Spinu Dacian
+
+MODULE 5 is responsible with quality assurance
+	1. Bogdan Nechita (A4)
+	2. Daneliuc Mihai (A4)
+	3. George Stafie (A3)
+	4. Alex Rusu
+	5. Hapau Bety
+
