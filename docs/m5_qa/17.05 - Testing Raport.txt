@@ -116,47 +116,53 @@ Description of the test:
 	
 	
 Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
 Name of the class/method:	
 	Class GoogleTranslate
 Description of the test:
-	Initially it was verified if the class translates the english word “forehead” correctly. 
-	The test passed because it returned the romanian word “frunte”. Then I tested for the sentence “I like you”, 
+	b.	Initially it was verified if the class translates the english word “forehead” correctly. 
+	The test passed because it returned the romanian word “frunte”. Then the sentence “I like you” was tested, 
 	returning the correct romanian translation “Îmi placi”. So the test for this class has succesfully passed.
 	
 	
 Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
 Name of the class/method:
 	Class Gsp
 Description of the test:
-	For this class the english word “pear” was the one given for testing after which a list of all its translations 
-	from the Gsp site was associated to this word. The result is supposed to be this exact list. 
+	b.	For this class the english word “pear” was the one given for testing after which a list of all its 
+	translations from the Gsp site was associated to this word. The result is supposed to be this exact list. 
 	The test failed as it returned an IndexOutOfBoundsException.
 
 	
 Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
 Name of the class/method:
 	Class Hallo
 Description of the test:
-	Similarly to the Gsp class, the same english word “pear” was used for testing and a list of all its official 
-	translations from the Hallo site has been associated to it. The test failed as it didn’t return this list, 
-	instead it displayed the same english word “pear” that has just been written.
+	b.	Similarly to the Gsp class, the same english word “pear” was used for testing and a list of all its 
+	official translations from the Hallo site has been associated to it. The test failed as it didn’t return 
+	this list, instead it displayed the same english word “pear” that has just been written.
 	
 	
-Date of completion: 16.05.2015	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4	
 Name of the class/method:
 	Class TranslateAPIFactory
 Description of the test:
-	Initially it was verified if the class translates the english word “chair” correctly, using a number of 
-	engines like Bing, Google Translate, Hallo, Gsp and Word Reference. The right translation of the word in 
-	romanian is “scaun”. Another test was made for the phrase “I want a book”, with the correct romanian translation 
-	being “Vreau o carte”. Both tests didn’t pass because it returned an IndexOutOfBoundsException.
+	b.	Initially it was verified if the class translates the english word “chair” correctly, using a number 
+	of engines like Bing, Google Translate, Hallo, Gsp and Word Reference. The right translation of the word 
+	in romanian is “scaun”. Another test was made for the phrase “I want a book”, with the correct romanian 
+	translation being “Vreau o carte”. Both tests didn’t pass because it returned an IndexOutOfBoundsException. 
+	It seems like the Gsp engine failed with the same errors as mentioned on point 2.
 
 	
-Date of completion: 16.05.2015	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4	
 Name of the class/method:
 	Class WordReference
 Description of the test:
-	For this class the english word “pear” was the one given for testing after which a list of all its translations 
-	from the Word Reference site was associated to this word. The result is supposed to be this exact list. The test 
-	failed because while it did return one right translation, ”păr”, it also returned the genre together with it, 
-	which wasn’t supposed to happen.
+	b.	For this class the english word “pear” was the one given for testing after which a list of all its 
+	translations from the Word Reference site was associated to this word. The result is supposed to be this 
+	exact list. The test failed because while it did return one right translation, ”păr”, it also returned 
+	the genre together with it (“păr s.m.”), which wasn’t supposed to happen.
