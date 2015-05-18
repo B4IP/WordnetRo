@@ -41,4 +41,13 @@ public class Translator{
 		
 		return trWord;
 	}
+	
+	public static String translateFromSentence(String word, String sentence){
+		//function takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
+		SentenceTranslator api = new GoogleTranslate("en", "ro");
+		
+		
+		
+		return " ";
+	}
 }
