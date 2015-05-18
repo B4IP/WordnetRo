@@ -1,6 +1,6 @@
 // a se vedea metoda iterateWords pentru un exemplu de interactiune
 // intre WordExtractor (ce foloseste API-ul Wordnetului) si baza de date 
-package wordnet;
+package extract;
 
 import net.sf.extjwnl.JWNLException;
 import net.sf.extjwnl.data.IndexWord;
