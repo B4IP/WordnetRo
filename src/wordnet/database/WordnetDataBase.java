@@ -20,6 +20,11 @@ public class WordnetDataBase {
 
     static {
         try {
+            /*  String url = "jdbc:oracle:thin:@85.122.23.37:1521:xe";
+            Properties properties = new Properties();
+            properties.setProperty("user", "stud98");
+            properties.setProperty("password", "MIHAI");
+            */
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Properties props = new Properties();
             props.setProperty("user", "mihai");
@@ -36,7 +41,7 @@ public class WordnetDataBase {
         try {
             connection.close();
         } catch (SQLException errorOnClose) {
-            System.out.println("Eroare la inchiderea bazei de date!!!");
+            System.out.println("Error on DataBase close!");
         }
     }
 
@@ -76,6 +81,164 @@ public class WordnetDataBase {
             System.out.println("Error on insertRomanianWords");
             eroare.printStackTrace();
             System.exit(0);
+        }
+    }
+
+public static void insertHypernyms(String cuvEng, String hiper)
+            throws SQLException {
+        String sql;
+        Connection conn;
+        PreparedStatement statement;
+        ResultSet result;
+        int idCuvEng = 0;
+        int idHyper = 0;
+
+        String rezultat = "@ ";
+        sql = "SELECT ID_cuvant_eng\n"
+                + "FROM cuvinte_engleza\n"
+                + "WHERE cuvant_eng = ?";
+        try {
+            conn = WordnetDataBase.getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, cuvEng);
+            result = statement.executeQuery();
+            //System.out.println("id cuvant: ");
+            while (result.next()) {
+                rezultat = rezultat + result.getString("ID_cuvant_eng");
+                idCuvEng = Integer.parseInt(result.getString("ID_cuvant_eng"));
+            }
+
+            rezultat = rezultat + " --- ";
+
+            result.close();
+            statement.close();
+        } catch (SQLException eroare) {
+            System.out.println("Error on insertHypernyms");
+            eroare.printStackTrace();
+            System.exit(0);
+        }
+
+        sql = "SELECT ID_cuvant_eng\n"
+                + "FROM cuvinte_engleza\n"
+                + "WHERE cuvant_eng = ?";
+        try {
+            conn = WordnetDataBase.getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, hiper);
+            result = statement.executeQuery();
+            while (result.next()) {
+                rezultat = rezultat + result.getString("ID_cuvant_eng");
+                idHyper = Integer.parseInt(result.getString("ID_cuvant_eng"));
+            }
+            rezultat = rezultat + " @";
+            result.close();
+            statement.close();
+        } catch (SQLException eroare) {
+            System.out.println("Error on insertHypernyms");
+            eroare.printStackTrace();
+            System.exit(0);
+        }
+
+        System.out.println(rezultat);
+        System.out.println("-> @ " + idCuvEng + " --- " + idHyper + " @");
+
+        if (idCuvEng != 0 && idHyper != 0) {
+            sql = "INSERT INTO hiperonime VALUES (?, ?)";
+            try {
+                conn = WordnetDataBase.getConnection();
+                statement = conn.prepareStatement(sql);
+                statement.setInt(1, idCuvEng);
+                statement.setInt(2, idHyper);
+                statement.executeQuery();
+                statement.close();
+            } catch (SQLException eroare) {
+                System.out.println("Error on insertHypernyms3");
+                eroare.printStackTrace();
+                System.exit(0);
+            }
+
+            System.out.println("-> @ OK!");
+        } else {
+            System.out.println("-> @ NOT OK!");
+        }
+    }
+    
+      public static void insertMeronyms(String cuvEng, String mero)
+            throws SQLException {
+        String sql;
+        Connection conn;
+        PreparedStatement statement;
+        ResultSet result;
+        int idCuvEng = 0;
+        int idMero = 0;
+
+        String rezultat = "@ ";
+        sql = "SELECT ID_cuvant_eng\n"
+                + "FROM cuvinte_engleza\n"
+                + "WHERE cuvant_eng = ?";
+        try {
+            conn = WordnetDataBase.getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, cuvEng);
+            result = statement.executeQuery();
+            //System.out.println("id cuvant: ");
+            while (result.next()) {
+                rezultat = rezultat + result.getString("ID_cuvant_eng");
+                idCuvEng = Integer.parseInt(result.getString("ID_cuvant_eng"));
+            }
+
+            rezultat = rezultat + " --- ";
+
+            result.close();
+            statement.close();
+        } catch (SQLException eroare) {
+            System.out.println("Error on insertMeronyms");
+            eroare.printStackTrace();
+            System.exit(0);
+        }
+
+        sql = "SELECT ID_cuvant_eng\n"
+                + "FROM cuvinte_engleza\n"
+                + "WHERE cuvant_eng = ?";
+        try {
+            conn = WordnetDataBase.getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, mero);
+            result = statement.executeQuery();
+            while (result.next()) {
+                rezultat = rezultat + result.getString("ID_cuvant_eng");
+                idMero = Integer.parseInt(result.getString("ID_cuvant_eng"));
+            }
+            rezultat = rezultat + " @";
+            result.close();
+            statement.close();
+        } catch (SQLException eroare) {
+            System.out.println("Error on insertMeronyms");
+            eroare.printStackTrace();
+            System.exit(0);
+        }
+
+        System.out.println(rezultat);
+        System.out.println("-> @ " + idCuvEng + " --- " + idMero + " @");
+
+        if (idCuvEng != 0 && idMero != 0) {
+            sql = "INSERT INTO meronime VALUES (?, ?)";
+            try {
+                conn = WordnetDataBase.getConnection();
+                statement = conn.prepareStatement(sql);
+                statement.setInt(1, idCuvEng);
+                statement.setInt(2, idMero);
+                statement.executeQuery();
+                statement.close();
+            } catch (SQLException eroare) {
+                System.out.println("Error on insertMeronyms");
+                eroare.printStackTrace();
+                System.exit(0);
+            }
+
+            System.out.println("-> @ OK!");
+        } else {
+            System.out.println("-> @ NOT OK!");
         }
     }
 
