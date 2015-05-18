@@ -1,10 +1,28 @@
 package translate.translator;
 
+import java.util.HashMap;
+
+import net.sf.extjwnl.data.POS;
 import translate.apis.SentenceTranslator;
 import translate.apis.GoogleTranslate;
 
 public class Translator{
-	public static String translateFromDefinition(String word, String definition){
+	private HashMap<POS, String> prefix, sufix;
+	
+	public Translator() {
+		prefix = new HashMap<POS, String>();
+		prefix.put(POS.ADJECTIVE, "The meaning of word ");
+		prefix.put(POS.ADVERB, "A ");
+		prefix.put(POS.NOUN, "a ");
+		prefix.put(POS.VERB, "to ");
+		sufix = new HashMap<POS, String>();
+		sufix.put(POS.ADJECTIVE, " is ");
+		sufix.put(POS.ADVERB, " ");
+		sufix.put(POS.NOUN, " is a ");
+		sufix.put(POS.VERB, "means");
+	}
+	
+	public static String translateFromDefinition(String word, POS type, String definition){
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
 		String sentence = null;
 		if (definition.trim().startsWith("a"))
