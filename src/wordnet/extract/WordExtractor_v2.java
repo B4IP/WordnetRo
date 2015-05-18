@@ -1,6 +1,6 @@
 // a se vedea metoda iterateWords pentru un exemplu de interactiune
 // intre WordExtractor (ce foloseste API-ul Wordnetului) si baza de date 
-package extract;
+package wordnet.extract;
 
 import net.sf.extjwnl.JWNLException;
 import net.sf.extjwnl.data.IndexWord;
@@ -12,7 +12,7 @@ import net.sf.extjwnl.dictionary.Dictionary;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-import database.WordnetDataBase;
+import wordnet.database.WordnetDataBase;
 import java.sql.SQLException;
 
 /**
@@ -20,13 +20,13 @@ import java.sql.SQLException;
  * @author Andrei Pricop
  * @author Mihai Cimpan (a adus mici modificari )
  */
-public class WordExtractor {
+public class WordExtractor_v2 {
 
     private Dictionary dictionary;
 
     public static void main(String[] args)
             throws FileNotFoundException, JWNLException, CloneNotSupportedException, SQLException {
-        WordExtractor we = new WordExtractor(Dictionary.getDefaultResourceInstance());
+    	WordExtractor_v2 we = new WordExtractor_v2(Dictionary.getDefaultResourceInstance());
          we.extractWords("[a](.)*");       
          we.extractHyper("[a](.)*");
          we.extractMero("[a](.)*");
@@ -34,7 +34,7 @@ public class WordExtractor {
         WordnetDataBase.closeDataBaseConnection();
     }
 
-    public WordExtractor(Dictionary dictionary) throws SQLException {
+    public WordExtractor_v2(Dictionary dictionary) throws SQLException {
         this.dictionary = dictionary;
     }
 

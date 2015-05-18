@@ -1,4 +1,4 @@
-package extract;
+package wordnet.extract;
 
 import java.util.Iterator;
 
@@ -11,18 +11,18 @@ import net.sf.extjwnl.data.list.PointerTargetNode;
 import net.sf.extjwnl.data.list.PointerTargetNodeList;
 import net.sf.extjwnl.dictionary.Dictionary;
 
-public class WordExtractor {
+public class WordExtractor_v1 {
 	
 	Dictionary dictionary;
 	
 	public static void main(String[] args) throws JWNLException {
-		WordExtractor we = new WordExtractor(Dictionary.getDefaultResourceInstance());
+		WordExtractor_v1 we = new WordExtractor_v1(Dictionary.getDefaultResourceInstance());
 		we.extractWords("[a](.)*");
 		we.extractHyper("[a](.)*");
 		we.extractMero("[a](.)*");
 	}
 
-	public WordExtractor(Dictionary dictionary) {
+	public WordExtractor_v1(Dictionary dictionary) {
 		this.dictionary = dictionary;
 	}
 	
