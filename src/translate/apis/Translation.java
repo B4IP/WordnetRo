@@ -31,4 +31,13 @@ public class Translation implements Iterable<String>{
 	public Iterator<String> iterator() {
 		return dst.iterator();
 	}
+        
+        public String toString() {
+            String buffer = "Source: " + this.src + "\nTraslations: ";
+            for (String translation : this.dst) {
+                buffer += translation + ", ";
+            }
+            buffer = buffer.substring(0, buffer.length() - 2);
+            return buffer;
+        }
 }
