@@ -54,12 +54,24 @@ public class WordReference implements WordTranslator{
 		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
 		
-		String item = null;
-		Elements elem = doc.select("td.ToWrd");
-		for (Element el : elem){
-			item = el.text().replaceAll(" s.f.| s.n.", "");
-			//if (!translation.contains(item))
-			translation.add(item);
+		Element table = doc.getElementsByClass("WRD").first();
+		String childOf = null;
+		for (Element el : table.getElementsByTag("tr")){
+			if (el.getElementsByTag("td").size()!=3)
+				continue;
+			/*if (!"even|odd".contains(el.attr("class")))
+				continue;*/
+			
+			Element from = el.getElementsByClass("FrWrd").first();
+			Element to = el.getElementsByClass("ToWrd").first();
+			
+			if (from!=null){
+				childOf = from.child(0).text();
+			}
+			if (!childOf.equals(word))
+				break;
+			for (String w : to.childNode(0).toString().split(","))
+				translation.add(w.trim());
 		}
 		
 		return translation;
