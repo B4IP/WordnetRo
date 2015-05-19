@@ -24,7 +24,7 @@ public class Hallo implements WordTranslator {
 	
 	private String buildQuery(String str) {
 		String encodedStr = null;
-		String url = "http://hallo.ro/search.do?d=%s&l=%s&type=both&query=%s";
+		String url = "http://hallo.ro/search.do?d=%s&l=%s&query=%s";
 
 		try {
 			encodedStr = URLEncoder.encode(str,
@@ -33,7 +33,7 @@ public class Hallo implements WordTranslator {
 			System.out.printf("Charset not suported: %s\n", str); // translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format(url, target, source, encodedStr);
+		return String.format(url, source, target, encodedStr);
 	}
 
 	@Override
@@ -55,25 +55,29 @@ public class Hallo implements WordTranslator {
 		
 
 		Document doc = Jsoup.parse(content);
-		Elements elem = doc.select("td.t3");
+		Element table = doc.getElementsByClass("main").first();
 		Translation translation = new Translation(word);
 
-		for (Element el : elem) {
-			List<String> temp = new ArrayList<String>();
-			Elements links = el.select("a");
-			String w = "";
-			for (Element link : links) {
-				temp.add(link.text());
-			}
-			for (String item : temp) {
-				w = w + ' ' + item;
-			}
-			w = w.replace("null ", "");
+		for (Element row : table.getElementsByTag("tr")) {
+			Element from = row.getElementsByClass("t2").first();
+			Element to = row.getElementsByClass("t3").first();
 
-			translation.add(word);
+			if (from==null || to==null)
+				continue;
+			if (from.childNodeSize()==0 || from.childNode(0).childNodeSize()==0)
+				continue;
+			
+			if (from.text().equals(word)){
+				StringBuilder w = new StringBuilder();
+				for (Element i : to.getElementsByTag("a")){
+					w.append(i.text() + " ");
+					if (i.nextSibling()!=null && i.nextSibling().toString().contains("("))
+						break;
+				}
+				translation.add(w.toString().trim());
+			}
 		}
 
-		//translation.remove(0);
 		return translation;
 	}
 }
