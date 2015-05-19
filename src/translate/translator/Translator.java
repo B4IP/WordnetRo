@@ -1,10 +1,13 @@
 package translate.translator;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import net.sf.extjwnl.data.POS;
 import translate.apis.SentenceTranslator;
 import translate.apis.GoogleTranslate;
+import translate.apis.Translation;
+import translate.apis.WordReference;
 
 public class Translator{
 	private HashMap<POS, String> prefix, sufix;
@@ -45,9 +48,34 @@ public class Translator{
 	public static String translateFromSentence(String word, String sentence){
 		//function takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
+		WordReference wr = new WordReference("en", "ro");
+		String word_translated = null;
+		
+		String sentence_translated = api.translateSentence(sentence);
+		Translation translation = new Translation(word);
 		
 		
+		String[] words = sentence_translated.split(" ");
+		for (int i=0; i < words.length; i++)
+		{
+			words[i] = words[i].toLowerCase();
+		}
 		
-		return " ";
+	    System.out.println();
+	    translation = wr.getCandidates(word);
+	    Iterator<String> itr1 = translation.iterator();
+	    while(itr1.hasNext()) {
+	         Object element = itr1.next();
+	         System.out.print(element+"; ");
+	         for (int i=0; i < words.length; i++)
+	 		{
+	        	 if (words[i].contains((String)element))
+		         {
+		        	return (String)element;
+		         }
+	 		}
+	    }
+	    
+		return word_translated;
 	}
 }
