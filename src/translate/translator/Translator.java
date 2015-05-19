@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import net.sf.extjwnl.data.POS;
+import translate.algo.Levenstein;
 import translate.apis.SentenceTranslator;
 import translate.apis.GoogleTranslate;
 import translate.apis.Translation;
@@ -61,18 +62,29 @@ public class Translator{
 			words[i] = words[i].toLowerCase();
 		}
 		
-	    System.out.println();
+		
+		Levenstein l = new Levenstein();
+		double score = 0, max_score = 0;
 	    translation = wr.getCandidates(word);
 	    Iterator<String> itr1 = translation.iterator();
 	    while(itr1.hasNext()) {
 	         Object element = itr1.next();
-	         System.out.print(element+"; ");
+	        
 	         for (int i=0; i < words.length; i++)
 	 		{
 	        	 if (words[i].contains((String)element))
 		         {
 		        	return (String)element;
 		         }
+	        	 else
+	        	 {
+	        		score = l.getNormalisedDistance(words[i], (String)element);
+	        		if (score > max_score)
+	        		{
+	        			max_score = score;
+	        			word_translated = (String)element;
+	        		}
+	        	 }
 	 		}
 	    }
 	    
