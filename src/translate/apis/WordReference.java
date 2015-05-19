@@ -30,7 +30,7 @@ public class WordReference implements WordTranslator{
 			System.out.printf("Charset not suported: %s\n", str); //translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format("http://www.wordreference.com/%s%s/%s", target, source, encodedStr);
+		return String.format("http://www.wordreference.com/%s%s/%s", source, target, encodedStr);
 	}
 	
 	@Override
