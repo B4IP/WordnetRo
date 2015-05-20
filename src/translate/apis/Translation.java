@@ -67,12 +67,17 @@ public class Translation implements Iterable<String>{
 	}
     
 	@Override
-	public String toString() {
-        String buffer = "Source: " + this.src + "\nTraslations: ";
-        for (String translation : this.dst) {
-            buffer += translation + ", ";
+        public String toString() {
+            String buffer = "Source: " + this.src + "\nTraslations: ";
+            for (String translation : this.dst) {
+                buffer += translation + ", ";
+            }
+            buffer = buffer.substring(0, buffer.length() - 2);
+            return buffer;
         }
-        buffer = buffer.substring(0, buffer.length() - 2);
-        return buffer;
-    }
+        
+        public boolean hasTranslations() {
+            return !(this.dst.isEmpty());
+        }
+        
 }

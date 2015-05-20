@@ -49,6 +49,15 @@ public class Dictio implements WordTranslator {
                 for(Element e : results){
                     translation.add(e.text().split("\\[.*\\]")[0].trim());
                 }
+                
+//                System.out.println(responseDocument.toString());
+                if (!translation.hasTranslations()) {
+                    results = responseDocument.select("body");
+                    for(Element e: results) {
+                        translation.add(e.text().toLowerCase());
+                    }
+                }
+                
 
                 return translation;
 	}
