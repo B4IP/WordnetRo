@@ -1,6 +1,7 @@
 
 package translate.factory;
 
+import translate.apis.Dictio;
 import translate.apis.Gsp;
 import translate.apis.Hallo;
 import translate.apis.WordTranslator;
@@ -33,6 +34,8 @@ public class TranslateAPIFactory {
             	return new Hallo(fromLang, toLang);
             case WordReference:
             	return new WordReference(fromLang, toLang);
+            case Dictio:
+            	return new Dictio(fromLang, toLang);
             default:
                 throw new InvalidTranslatorOptionException();
         }

@@ -2,6 +2,6 @@ package translate.factory;
 
 public enum API {
     
-    Bing, Google, Gsp, Hallo, WordReference 
+    Bing, Dictio, Google, Gsp, Hallo, WordReference 
     
 }
