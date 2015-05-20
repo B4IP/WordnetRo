@@ -9,7 +9,7 @@ public class TranslateTest{
 	public static void main(String args[]){
 		WordTranslator tr = null;
 		
-		tr = TranslateAPIFactory.getAPIInstance(API.Hallo, "en", "ro");
+		tr = TranslateAPIFactory.getAPIInstance(API.Gsp, "en", "ro");
 		Translation candidates = tr.getCandidates("pear");
 		for (String candidate : candidates){
 			System.out.println(candidate);

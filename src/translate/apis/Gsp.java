@@ -2,15 +2,12 @@ package translate.apis;
 
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import translate.apis.HttpGet;
 
 public class Gsp implements WordTranslator{
 	String source, target;
@@ -25,25 +22,22 @@ public class Gsp implements WordTranslator{
 
 		try {
 			encodedStr = URLEncoder.encode(str,
-					java.nio.charset.StandardCharsets.UTF_8.toString());
+			java.nio.charset.StandardCharsets.UTF_8.toString());
 		} catch (UnsupportedEncodingException e) {
 			System.out.printf("Charset not suported: %s\n", str); // translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format("http://%s-%s.gsp.ro/index.php?d=e&q=%s", source, target, encodedStr);
+		return String.format("http://%s-%s.gsp.ro/index.php?d=e&q=%s", target, source, encodedStr);
 	}
 
 	@Override
 	public Translation getCandidates(String word) {
 		String url = buildQuery(word);
-		String content = null;
+		Document doc = null;
 		
+		System.out.println(url);
 		try{
-			content = HttpGet.download(url);
-		}
-		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", word);
-			return null;
+			doc = Jsoup.connect(url).get();
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
@@ -51,20 +45,17 @@ public class Gsp implements WordTranslator{
 		}
 		
 
-		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
 
 		Elements elem = doc.select("table>tbody>tr");
+		if (elem==null)
+			return translation;
 
-		
-		try {
-			for (Element el : elem) {
+		for (Element el : elem) {
 			Elements tds = el.children();
-			//System.out.println(tds.get(3).text());
-			//if (!translation.contains(tds.get(3).text())) 
-			translation.add(tds.get(3).text());
+			if (tds.get(1).text().equals(word))
+				translation.add(tds.get(3).text());
 		}
-		} catch(IndexOutOfBoundsException e) {}
 		
 		return translation;
 	}
