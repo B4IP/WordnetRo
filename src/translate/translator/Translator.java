@@ -41,7 +41,7 @@ public class Translator{
 		 */
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
 		String sentence = null;
-		sentence = String.format("%s%s%s%s.");
+		sentence = String.format("%s%s%s%s.", prefix.get(type), word, sufix.get(type), definition);
 
 		String tr = api.translateSentence(sentence);
 		int index = tr.indexOf("este");
@@ -71,8 +71,6 @@ public class Translator{
 			words[i] = words[i].toLowerCase();
 		}
 		
-		
-		Levenstein l = new Levenstein();
 		double score = 0, max_score = 0;
 	    translation = wr.getCandidates(word);
 	    Iterator<String> itr1 = translation.iterator();
@@ -87,7 +85,7 @@ public class Translator{
 		         }
 	        	 else
 	        	 {
-	        		score = l.getNormalisedDistance(words[i], (String)element);
+	        		score = Levenstein.getNormalisedDistance(words[i], (String)element);
 	        		if (score > max_score)
 	        		{
 	        			max_score = score;

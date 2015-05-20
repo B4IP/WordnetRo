@@ -9,11 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-<<<<<<< HEAD
 import translate.http.HttpGet;
 
-=======
->>>>>>> origin/master
 public class Gsp implements WordTranslator{
 	String source, target;
 	

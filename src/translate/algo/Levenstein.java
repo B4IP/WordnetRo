@@ -3,7 +3,7 @@ package translate.algo;
 public class Levenstein {
 	static private int d1[]=null, d2[]=null;
 	
-	static public int getDistance(String str1, String str2){
+	public static int getDistance(String str1, String str2){
 		d1 = new int[str2.length()+1];
 		d2 = new int[str2.length()+1];
 		
@@ -23,7 +23,7 @@ public class Levenstein {
 		return d2[str2.length()];
 	}
 	
-	public double getNormalisedDistance(String str1, String str2){
+	public static double getNormalisedDistance(String str1, String str2){
 		double dist = getDistance(str1, str2);
 		return 1-dist/Math.max(str1.length(), str2.length());
 	}
