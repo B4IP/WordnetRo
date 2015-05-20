@@ -10,7 +10,7 @@ public class TranslateTest{
 		WordTranslator tr = null;
 		
 		tr = TranslateAPIFactory.getAPIInstance(API.Hallo, "en", "ro");
-		Translation candidates = tr.getCandidates("raw");
+		Translation candidates = tr.getCandidates("pear");
 		for (String candidate : candidates){
 			System.out.println(candidate);
 		}
