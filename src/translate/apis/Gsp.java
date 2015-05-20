@@ -10,7 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import translate.apis.HttpGet;
+import translate.http.HttpGet;
 
 public class Gsp implements WordTranslator{
 	String source, target;
