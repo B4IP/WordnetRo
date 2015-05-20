@@ -10,7 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import translate.http.HttpGet;
+import translate.apis.HttpGet;
 
 public class Gsp implements WordTranslator{
 	String source, target;
@@ -30,7 +30,7 @@ public class Gsp implements WordTranslator{
 			System.out.printf("Charset not suported: %s\n", str); // translate.google.com/#auto/ro/car
 			return null;
 		}
-		return String.format("http://%s-%s.gsp.ro/index.php?q=%s", source, target, encodedStr);
+		return String.format("http://%s-%s.gsp.ro/index.php?d=e&q=%s", source, target, encodedStr);
 	}
 
 	@Override
@@ -56,12 +56,15 @@ public class Gsp implements WordTranslator{
 
 		Elements elem = doc.select("table>tbody>tr");
 
-		for (Element el : elem) {
+		
+		try {
+			for (Element el : elem) {
 			Elements tds = el.children();
-			// System.out.println(tds.get(3).text());
+			//System.out.println(tds.get(3).text());
 			//if (!translation.contains(tds.get(3).text())) 
 			translation.add(tds.get(3).text());
 		}
+		} catch(IndexOutOfBoundsException e) {}
 		
 		return translation;
 	}
