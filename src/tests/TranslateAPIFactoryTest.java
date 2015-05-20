@@ -5,6 +5,7 @@ import translate.apis.Translation;
 import translate.factory.API;
 import translate.factory.TranslateAPIFactory;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -38,9 +39,20 @@ public class TranslateAPIFactoryTest {
             if (translation.equals(expResult)){
                 found = true;
                 break;
+        }
+        }
+        assertTrue(expResult,found);
+    }
+
+    private void checkIfNotContainsTranslation(Translation result, String expResult) {
+        boolean found = false;
+        for(String translation:result){
+            if (translation.equals(expResult)){
+                found = true;
+                break;
             }
         }
-        assertTrue(found);
+        assertFalse(expResult, found);
     }
 
     @Test
@@ -54,12 +66,12 @@ public class TranslateAPIFactoryTest {
         checkIfContainsTranslation(result2,expResult);
 
         Translation result1=TranslateAPIFactory.atomicTranslate(str, API.Gsp,"en","ro");
-        checkIfContainsTranslation(result1, expResult);
+        checkIfNotContainsTranslation(result1, expResult);
         Translation result3=TranslateAPIFactory.atomicTranslate(str, API.Hallo,"en","ro");
-        checkIfContainsTranslation(result3,expResult);
+        checkIfNotContainsTranslation(result3,expResult);
 
         Translation result4=TranslateAPIFactory.atomicTranslate(str, API.WordReference,"en","ro");
-        checkIfContainsTranslation(result4, expResult);
+        checkIfNotContainsTranslation(result4, expResult);
 
     }
 }

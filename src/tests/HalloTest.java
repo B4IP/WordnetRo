@@ -1,43 +1,38 @@
-﻿package tests;
+package tests;
+
 import org.junit.Test;
 import translate.apis.Hallo;
 import translate.apis.Translation;
 
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Created by mihai on 5/16/2015.
- */
 public class HalloTest {
     @Test
     public void getCandidatesTest(){
-    Hallo hallo=new Hallo("en","ro");
-    Translation translation=new Translation("pear");
-    translation.add("păr (Pyrus communis)");
-    translation.add("pară");
-    translation.add("pară");
-    translation.add("pară (la convertizor)");
-    translation.add("scoruş de munte (Sorbus aucaparia)");
-    translation.add("sorb (Sorbus aucaparia)");
-    translation.add("lemn de păr");
-    translation.add("para lui Poincare ");
-    translation.add("întrerupător (în formă de) pară");
-    translation.add("şină cu cap umflat");
-    translation.add("şină cu profil bulb");
-    translation.add("şină cu profil de pară");
+        Hallo hallo=new Hallo("en","ro");
+        Set<String> translation=new HashSet<String>();
+        translation.add("păr");
+        translation.add("pară");
+        translation.add("pară");
+        translation.add("pară");
+        translation.add("scoruş de munte");
+        translation.add("sorb");
+        translation.add("lemn de păr");
+        translation.add("para lui Poincare");
+        translation.add("întrerupător pară");
+        translation.add("şină cu cap umflat");
+        translation.add("şină cu profil bulb");
+        translation.add("şină cu profil de pară");
 
 
-    Translation result = hallo.getCandidates("pear");
+        Translation result = hallo.getCandidates("pear");
 
-    Iterator<String> resultIterator = result.iterator();
-    Iterator<String> expectedIterator = translation.iterator();
-
-    while(resultIterator.hasNext() && expectedIterator.hasNext()) {
-        assertEquals(expectedIterator.next(), resultIterator.next());
-    }
-
+        for(String s:result){
+            assertTrue(translation.contains(s));
+        }
 }
 
 }

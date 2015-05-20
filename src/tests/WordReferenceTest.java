@@ -4,9 +4,10 @@ import org.junit.Test;
 import translate.apis.Translation;
 import translate.apis.WordReference;
 
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by mihai on 5/15/2015.
@@ -15,20 +16,45 @@ public class WordReferenceTest {
     @Test
     public void getCandidatesTest(){
         WordReference wordReference=new WordReference("en","ro");
-        Translation translation=new Translation("pear");
+        Set<String> translation=new HashSet<String>();
         translation.add("pară");
         translation.add("păr");
         translation.add("țuică de pere");
+        translation.add("păr");
         translation.add("fruct de cactus comestibil");
 
         Translation result = wordReference.getCandidates("pear");
 
-        Iterator<String> resultIterator = result.iterator();
-        Iterator<String> expectedIterator = translation.iterator();
-
-        while(resultIterator.hasNext() && expectedIterator.hasNext()) {
-            assertEquals(expectedIterator.next(), resultIterator.next());
+        for(String s:result){
+            assertTrue(translation.contains(s));
         }
+
+    }
+
+    @Test
+    public void getOtherCanidatesTest(){
+        WordReference wordReference=new WordReference("en","ro");
+        Set<String> translation=new HashSet<String>();
+        translation.add("portocaliu");
+        translation.add("portocală");
+        translation.add("de portocală");
+        translation.add("de portocală");
+        translation.add("portocaliu");
+        translation.add("portocal");
+        translation.add("mandarină");
+        translation.add("floare de portocal");
+        translation.add("livadă de portocali");
+        translation.add("suc de portocale");
+        translation.add("marmeladă de portocale");
+        translation.add("coajă de portocală");
+        translation.add("portocal");
+
+        Translation result = wordReference.getCandidates("orange");
+
+        for(String s:result){
+            assertTrue(s, translation.contains(s));
+        }
+
 
     }
 }
