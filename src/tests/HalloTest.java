@@ -1,4 +1,4 @@
-package tests;
+﻿package tests;
 import org.junit.Test;
 import translate.apis.Hallo;
 import translate.apis.Translation;

@@ -1,5 +1,6 @@
 package translate.translator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -12,28 +13,36 @@ import translate.apis.WordReference;
 
 public class Translator{
 	private HashMap<POS, String> prefix, sufix;
+	private HashMap<POS, ArrayList<String>> separator;
 	
 	public Translator() {
 		prefix = new HashMap<POS, String>();
 		prefix.put(POS.ADJECTIVE, "The meaning of word ");
-		prefix.put(POS.ADVERB, "A ");
-		prefix.put(POS.NOUN, "a ");
-		prefix.put(POS.VERB, "to ");
+		prefix.put(POS.ADVERB, "The meaning of word ");
+		prefix.put(POS.NOUN, "The meaning of word ");
+		prefix.put(POS.VERB, "To ");
+		
 		sufix = new HashMap<POS, String>();
 		sufix.put(POS.ADJECTIVE, " is ");
-		sufix.put(POS.ADVERB, " ");
-		sufix.put(POS.NOUN, " is a ");
+		sufix.put(POS.ADVERB, " is ");
+		sufix.put(POS.NOUN, " is ");
 		sufix.put(POS.VERB, "means");
+		
+		separator = new HashMap<>();
+		separator.put(POS.ADJECTIVE, new ArrayList<>());
+		separator.get(POS.ADJECTIVE).add("este");
+		separator.get(POS.ADJECTIVE).add("e");
 	}
 	
-	public static String translateFromDefinition(String word, POS type, String definition){
+	public String translateFromDefinition(String word, POS type, String definition){
+		/**
+		 * Function takes a word, and a definition.
+		 * It returns the translated word.
+		 */
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
 		String sentence = null;
-		if (definition.trim().startsWith("a"))
-			sentence = String.format("A %s is %s.", word, definition);
-		else
-			sentence = String.format("A %s is a %s.", word, definition);
-		
+		sentence = String.format("%s%s%s%s.");
+
 		String tr = api.translateSentence(sentence);
 		int index = tr.indexOf("este");
 		String trWord = tr.substring(0, index).trim();
@@ -46,7 +55,7 @@ public class Translator{
 		return trWord;
 	}
 	
-	public static String translateFromSentence(String word, String sentence){
+	public String translateFromSentence(String word, POS type, String sentence){
 		//function takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
 		WordReference wr = new WordReference("en", "ro");
@@ -89,5 +98,9 @@ public class Translator{
 	    }
 	    
 		return word_translated;
+	}
+	
+	public String translate(String word, POS type, String gloss){
+		return "";
 	}
 }
