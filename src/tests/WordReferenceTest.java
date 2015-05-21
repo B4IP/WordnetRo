@@ -17,11 +17,8 @@ public class WordReferenceTest {
     public void getCandidatesTest(){
         WordReference wordReference=new WordReference("en","ro");
         Set<String> translation=new HashSet<String>();
-        translation.add("pară");
-        translation.add("păr");
-        translation.add("țuică de pere");
-        translation.add("păr");
-        translation.add("fruct de cactus comestibil");
+        translation.add("para");
+        translation.add("par");
 
         Translation result = wordReference.getCandidates("pear");
 
@@ -36,18 +33,12 @@ public class WordReferenceTest {
         WordReference wordReference=new WordReference("en","ro");
         Set<String> translation=new HashSet<String>();
         translation.add("portocaliu");
-        translation.add("portocală");
-        translation.add("de portocală");
-        translation.add("de portocală");
+        translation.add("portocala");
+        translation.add("de portocala");
+        translation.add("de portocala");
         translation.add("portocaliu");
         translation.add("portocal");
-        translation.add("mandarină");
-        translation.add("floare de portocal");
-        translation.add("livadă de portocali");
-        translation.add("suc de portocale");
-        translation.add("marmeladă de portocale");
-        translation.add("coajă de portocală");
-        translation.add("portocal");
+
 
         Translation result = wordReference.getCandidates("orange");
 

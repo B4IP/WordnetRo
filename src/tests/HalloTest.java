@@ -14,18 +14,10 @@ public class HalloTest {
     public void getCandidatesTest(){
         Hallo hallo=new Hallo("en","ro");
         Set<String> translation=new HashSet<String>();
-        translation.add("păr");
-        translation.add("pară");
-        translation.add("pară");
-        translation.add("pară");
-        translation.add("scoruş de munte");
-        translation.add("sorb");
-        translation.add("lemn de păr");
-        translation.add("para lui Poincare");
-        translation.add("întrerupător pară");
-        translation.add("şină cu cap umflat");
-        translation.add("şină cu profil bulb");
-        translation.add("şină cu profil de pară");
+        translation.add("par");
+        translation.add("para");
+        translation.add("para");
+        translation.add("para");
 
 
         Translation result = hallo.getCandidates("pear");
