@@ -28,37 +28,35 @@ public class Dictio implements WordTranslator {
 	@Override
 	public Translation getCandidates(String word)  {
 		String url = "https://www.dictio.ro/logic.php";
-		String content = null;
-                Document responseDocument;
-                Translation translation = new Translation(word);
-		
-                try {
-                    responseDocument = Jsoup.connect(url).
-                        data("l_from", source).
-                        data("l_to", target).
-                        data("sursa", word).
-                        userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 "
-                                + "(KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36").
-                        post();
-                }
-                catch(IOException e) {
-                    System.err.println("Could not download content from " + url);
-                    return null;
-                }
-                Elements results = responseDocument.select("tbody td");
-                for(Element e : results){
-                    translation.add(e.text().split("\\[.*\\]")[0].trim());
-                }
-                
-//                System.out.println(responseDocument.toString());
-                if (!translation.hasTranslations()) {
-                    results = responseDocument.select("body");
-                    for(Element e: results) {
-                        translation.add(e.text().toLowerCase());
-                    }
-                }
-                
+        Document responseDocument;
+        Translation translation = new Translation(word);
 
-                return translation;
+        try {
+            responseDocument = Jsoup.connect(url).
+                data("l_from", source).
+                data("l_to", target).
+                data("sursa", word).
+                userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 "
+                        + "(KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36").
+                post();
+        }
+        catch(IOException e) {
+            System.err.println("Could not download content from " + url);
+            return null;
+        }
+        Elements results = responseDocument.select("tbody td");
+        for(Element e : results){
+            translation.add(e.text().split("\\[.*\\]")[0].trim());
+        }
+        
+        //System.out.println(responseDocument.toString());
+        if (!translation.hasTranslations()) {
+            results = responseDocument.select("body");
+            for(Element e: results) {
+                translation.add(e.text().toLowerCase());
+            }
+        }
+
+        return translation;
 	}
 }

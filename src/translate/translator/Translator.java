@@ -1,9 +1,7 @@
 package translate.translator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import net.sf.extjwnl.data.POS;
 import translate.algo.Levenstein;
@@ -14,7 +12,8 @@ import translate.apis.WordReference;
 
 public class Translator{
 	private HashMap<POS, String> prefix, sufix;
-	private HashMap<POS, ArrayList<String>> separator;
+	private HashMap<POS, String> separator, transPref;
+	
 	
 	public Translator() {
 		prefix = new HashMap<POS, String>();
@@ -30,9 +29,16 @@ public class Translator{
 		sufix.put(POS.VERB, "means");
 		
 		separator = new HashMap<>();
-		separator.put(POS.ADJECTIVE, new ArrayList<>());
-		separator.get(POS.ADJECTIVE).add("este");
-		separator.get(POS.ADJECTIVE).add("e");
+		separator.put(POS.ADJECTIVE, "este");
+		separator.put(POS.ADVERB, "este");
+		separator.put(POS.NOUN, "este");
+		separator.put(POS.VERB, "inseamna");
+		
+		transPref = new HashMap<>();
+		transPref.put(POS.ADJECTIVE, "Sensul cuvântului");
+		transPref.put(POS.ADVERB, "Sensul cuvântului");
+		transPref.put(POS.NOUN, "Sensul cuvântului");
+		transPref.put(POS.VERB, "A");
 	}
 	
 	public String translateFromDefinition(String word, POS type, String definition){
@@ -45,13 +51,14 @@ public class Translator{
 		sentence = String.format("%s%s%s%s.", prefix.get(type), word, sufix.get(type), definition);
 
 		String tr = api.translateSentence(sentence);
-		int index = tr.indexOf("este");
-		String trWord = tr.substring(0, index).trim();
+		int index = tr.indexOf(separator.get(type));
+		if (index<0)
+			return translateFromSentence(word, type, sentence);
 		
-		if (trWord.indexOf(' ')<=1){
-			index =  trWord.indexOf(' ');
-			trWord = trWord.substring(index).trim();
-		}
+		String trWord = tr.substring(0, index).trim();
+		if (!trWord.startsWith(transPref.get(type)))
+			return translateFromSentence(word, type, sentence);
+		trWord = trWord.substring(transPref.get(type).length()).trim();
 		
 		return trWord;
 	}

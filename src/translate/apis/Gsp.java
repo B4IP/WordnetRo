@@ -37,7 +37,6 @@ public class Gsp implements WordTranslator{
 		String url = buildQuery(word);
 		Document doc = null;
 		
-		System.out.println(url);
 		try{
 			doc = Jsoup.connect(url).get();
 		}
