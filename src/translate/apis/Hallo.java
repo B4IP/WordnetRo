@@ -11,9 +11,6 @@ import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Hallo implements WordTranslator {
 	private String source, target;
 	
@@ -68,13 +65,9 @@ public class Hallo implements WordTranslator {
 				continue;
 			
 			if (from.text().equals(word)){
-				StringBuilder w = new StringBuilder();
-				for (Element i : to.getElementsByTag("a")){
-					w.append(i.text() + " ");
-					if (i.nextSibling()!=null && i.nextSibling().toString().contains("("))
-						break;
-				}
-				translation.add(w.toString().trim());
+				String  w = to.text();
+				w = w.split("[(\\[]")[0];
+				translation.add(w.trim());
 			}
 		}
 
