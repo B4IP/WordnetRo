@@ -20,7 +20,7 @@ public class TranslateAPIFactoryTest {
         String expResult="scaun";
         checkIfContainsTranslation(result, expResult);
 
-        Translation result2=TranslateAPIFactory.atomicTranslate(str, API.Bing,"en","ro");
+        Translation result2=TranslateAPIFactory.atomicTranslate(str, API.Dictio,"en","ro");
         checkIfContainsTranslation(result2, expResult);
 
         Translation result1=TranslateAPIFactory.atomicTranslate(str, API.Gsp,"en","ro");
@@ -62,8 +62,8 @@ public class TranslateAPIFactoryTest {
         String expResult="Vreau o carte";
         checkIfContainsTranslation(result, expResult);
 
-        Translation result2=TranslateAPIFactory.atomicTranslate(str, API.Bing,"en","ro");
-        checkIfContainsTranslation(result2,expResult);
+        Translation result2=TranslateAPIFactory.atomicTranslate(str, API.Dictio,"en","ro");
+        checkIfNotContainsTranslation(result2,expResult);
 
         Translation result1=TranslateAPIFactory.atomicTranslate(str, API.Gsp,"en","ro");
         checkIfNotContainsTranslation(result1, expResult);
