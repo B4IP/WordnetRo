@@ -36,8 +36,8 @@ public class GoogleTranslate2 implements IWordTranslator{
     public String translate(String str){
         String url = buildQuery(str);
         String content = null;
-        
-        try{
+        return null;
+        /*try{
             content = HttpGet.download(url);
         }
         catch (MalformedURLException e){
@@ -50,14 +50,14 @@ public class GoogleTranslate2 implements IWordTranslator{
         }
         
         String result = GoogleTranslate2ResultParser.extractMainResult(content);
-        return result;
+        return result;*/
     }
     
     public List<Translation> getPartialTranslations(String phrase) {
         String url = buildQuery(phrase);
         String content = null;
-        
-        try{
+        return null;
+        /*try{
             content = HttpGet.download(url);
         }
         catch (MalformedURLException e){
@@ -69,7 +69,7 @@ public class GoogleTranslate2 implements IWordTranslator{
             return null;
         }
         
-        return GoogleTranslate2ResultParser.extractPartialTranslations(content);
+        return GoogleTranslate2ResultParser.extractPartialTranslations(content);*/
     }
 
 	@Override
