@@ -1,6 +1,7 @@
 package translate.translator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -73,32 +74,40 @@ public class Translator{
 		
 		double score = 0, max_score = 0;
 	    translation = wr.getCandidates(word);
-	    Iterator<String> itr1 = translation.iterator();
-	    while(itr1.hasNext()) {
-	         Object element = itr1.next();
-	        
-	         for (int i=0; i < words.length; i++)
-	 		{
-	        	 if (words[i].contains((String)element))
-		         {
-		        	return (String)element;
-		         }
-	        	 else
-	        	 {
-	        		score = Levenstein.getNormalisedDistance(words[i], (String)element);
-	        		if (score > max_score)
-	        		{
-	        			max_score = score;
-	        			word_translated = (String)element;
-	        		}
-	        	 }
-	 		}
+	    for (String element : translation){
+			for (int i=0; i < words.length; i++)
+			{
+				 if (words[i].contains((String)element))
+			     {
+			    	return (String)element;
+			     }
+				 else
+				 {
+					score = Levenstein.getNormalisedDistance(words[i], (String)element);
+					if (score > max_score)
+					{
+						max_score = score;
+						word_translated = (String)element;
+					}
+				 }
+			}
 	    }
-	    
 		return word_translated;
 	}
 	
 	public String translate(String word, POS type, String gloss){
-		return "";
+		String parts[] = gloss.split(";");
+		String definition = parts[0], translatedDef;
+		String sentences[] = Arrays.copyOfRange(parts, 1, parts.length), translatedSent[] = null;
+		
+		
+		translatedDef = translateFromDefinition(word, type, definition);
+		if (sentences.length>0){
+			translatedSent = new String[sentences.length];
+			for (int i=0; i<sentences.length; ++i){
+				translatedSent[i] = translateFromSentence(word, type, sentences[i]);
+			}
+		}
+		return translatedDef;
 	}
 }
