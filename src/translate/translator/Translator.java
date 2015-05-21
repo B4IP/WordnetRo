@@ -67,6 +67,7 @@ public class Translator{
 	
 	public String translateFromSentence(String word, POS type, String sentence){
 		//function takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
+		
 		Translation translation = new Translation(word);
 		for (API api : API.values()){
 			translation.add(TranslateAPIFactory.atomicTranslate(word, api, "en", "ro"));
@@ -88,6 +89,8 @@ public class Translator{
 		double score = 0, max_score = 0;
 	    translation = wr.getCandidates(word);
 	    for (String element : translation){
+	    	
+	    	//System.out.print(element + "-");
 			for (int i=0; i < words.length; i++)
 			{
 				 if (words[i].contains((String)element))
@@ -106,6 +109,8 @@ public class Translator{
 			}
 	    }
 		return word_translated;
+		
+		
 	}
 	
 	public String translate(String word, POS type, String gloss){
