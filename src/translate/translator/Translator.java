@@ -9,6 +9,8 @@ import translate.apis.SentenceTranslator;
 import translate.apis.GoogleTranslate;
 import translate.apis.Translation;
 import translate.apis.WordReference;
+import translate.factory.API;
+import translate.factory.TranslateAPIFactory;
 
 public class Translator{
 	private HashMap<POS, String> prefix, sufix;
@@ -65,12 +67,15 @@ public class Translator{
 	
 	public String translateFromSentence(String word, POS type, String sentence){
 		//function takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
+		Translation translation = new Translation(word);
+		for (API api : API.values()){
+			translation.add(TranslateAPIFactory.atomicTranslate(word, api, "en", "ro"));
+		}
 		SentenceTranslator api = new GoogleTranslate("en", "ro");
 		WordReference wr = new WordReference("en", "ro");
 		String word_translated = null;
 		
 		String sentence_translated = api.translateSentence(sentence);
-		Translation translation = new Translation(word);
 		
 		
 		String[] words = sentence_translated.split(" ");
