@@ -91,7 +91,7 @@ public class Translator{
 	    for (String element : translation){
 	    	
 	    	//System.out.print(element + "-");
-			for (int i=0; i < words.length; i++)
+			for (int i=0; i<words.length; i++)
 			{
 				 if (words[i].contains((String)element))
 			     {

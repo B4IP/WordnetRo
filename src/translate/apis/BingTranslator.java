@@ -9,9 +9,10 @@ import java.net.URLEncoder;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
 import translate.http.HttpPost;
 
-public class BingTranslator implements IWordTranslator{
+public class BingTranslator implements IWordTranslator, ISentenceTranslator{
 	private static String user = "berendeanicolae@gmail.com";
 	private static String passw = "IGCynGBUnY83apRHqQ2fut9OqUdw0x7oEl0SZNyxJR8";
 	private String source, target;
@@ -72,5 +73,11 @@ public class BingTranslator implements IWordTranslator{
 		Translation translation = new Translation(word);
 		translation.add(doc.getElementsByTag("content").text());
 		return translation;
+	}
+
+	@Override
+	public String translateSentence(String sentence) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

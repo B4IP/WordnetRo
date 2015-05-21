@@ -48,6 +48,9 @@ public class WordReference implements IWordTranslator {
 		Translation translation = new Translation(word);
 		
 		Element table = doc.getElementsByClass("WRD").first();
+		if (table==null)
+			return translation;
+		
 		String childOf = null;
 		for (Element el : table.getElementsByTag("tr")){
 			if (el.getElementsByTag("td").size()!=3)
