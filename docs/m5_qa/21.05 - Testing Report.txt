@@ -123,6 +123,8 @@ Description of the test:
 		Initially it was verified if the class translates the english word “forehead” correctly. 
 	The test passed because it returned the romanian word “frunte”. Then the sentence “I like you” was tested, 
 	returning the correct romanian translation “Îmi placi”. So the test for this class has succesfully passed.
+Retest: 21.05.2015
+	Later, on 21.05.2015 the test passed again after the Romanian diacritics were eliminated, thus “Îmi placi” becoming “Imi placi”.
 	
 	
 Date of completion: 16.05.2015
@@ -133,6 +135,8 @@ Description of the test:
 		For this class the english word “pear” was the one given for testing after which a list of all its 
 	translations from the Gsp site was associated to this word. The result is supposed to be this exact list. 
 	The test failed as it returned an IndexOutOfBoundsException.
+Retest: 21.05.2015
+	Later, on 21.05.2015 the test passed as it returned the wanted list of translations from the Gsp site and the Romanian diacritics were eliminated as well.
 
 	
 Date of completion: 16.05.2015
@@ -145,7 +149,9 @@ Description of the test:
 	this list, instead it displayed the same english word “pear” that has just been written.
 Retest: 19.05.2015 
 		The test passed as it returned the said list of translations of the English work "pear" from the Hallo site.
-	
+Retest: 21.05.2015
+	    Later, on 21.05.2015 the test passed again as it returned the wanted list of translations from the Hallo site and the Romanian diacritics were eliminated as well.
+
 Date of completion: 16.05.2015
 Author: Daneliuc Mihai, grupa A4	
 Name of the class/method:
@@ -156,6 +162,9 @@ Description of the test:
 	in romanian is “scaun”. Another test was made for the phrase “I want a book”, with the correct romanian 
 	translation being “Vreau o carte”. Both tests didn’t pass because it returned an IndexOutOfBoundsException. 
 	It seems like the Gsp engine failed with the same errors as mentioned on point 2.
+Retest: 21.05.2015
+    Later, on 21.05.2015 the test passed for the word “chair”, but it seems like the Dictio,Gsp,Word Reference and Hallo sites are unable to return the proper translation for the phrase “I want a book”.
+    Like in the previous tests the Romanian diacritics were eliminated.
 
 	
 Date of completion: 16.05.2015
@@ -170,6 +179,9 @@ Description of the test:
 Retest: 19.05.2015 
 		After the test worked for “pear”, another one was made for the English word “orange” and, like “pear”, 
 		returned the right list from the Word Reference site.
+Retest: 21.05.2015
+        Later, on 21.05.2015, after the test worked for “pear”, another one was made for the English word “orange” and, like “pear”, returned the right list from the Word Reference site.
+        This time the word ”păr” became “par” as well as other proper translations of “pear” as the Romanian diacritics were eliminated.
 
 
 		
