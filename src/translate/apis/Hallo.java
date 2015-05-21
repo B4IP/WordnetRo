@@ -1,17 +1,16 @@
 package translate.apis;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-public class Hallo implements WordTranslator {
+public class Hallo implements IWordTranslator {
 	private String source, target;
 	
 	public Hallo(String source, String target){
@@ -24,10 +23,9 @@ public class Hallo implements WordTranslator {
 		String url = "http://hallo.ro/search.do?d=%s&l=%s&query=%s";
 
 		try {
-			encodedStr = URLEncoder.encode(str,
-					java.nio.charset.StandardCharsets.UTF_8.toString());
+			encodedStr = URLEncoder.encode(str, java.nio.charset.StandardCharsets.UTF_8.toString());
 		} catch (UnsupportedEncodingException e) {
-			System.out.printf("Charset not suported: %s\n", str); // translate.google.com/#auto/ro/car
+			System.out.printf("Charset not suported: %s\n", str);
 			return null;
 		}
 		return String.format(url, source, target, encodedStr);
@@ -36,14 +34,10 @@ public class Hallo implements WordTranslator {
 	@Override
 	public Translation getCandidates(String word) {
 		String url = buildQuery(word);
-		String content = null;
+		Document doc = null;
 		
 		try{
-			content = HttpGet.download(url);
-		}
-		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", word);
-			return null;
+			doc = HttpGet.download(url);
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
@@ -51,7 +45,6 @@ public class Hallo implements WordTranslator {
 		}
 		
 
-		Document doc = Jsoup.parse(content);
 		Element table = doc.getElementsByClass("main").first();
 		Translation translation = new Translation(word);
 

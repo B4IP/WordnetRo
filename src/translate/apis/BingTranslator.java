@@ -1,6 +1,6 @@
 package translate.apis;
 
-import translate.apis.WordTranslator;
+import translate.apis.IWordTranslator;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,7 +11,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import translate.http.HttpPost;
 
-public class BingTranslator implements WordTranslator{
+public class BingTranslator implements IWordTranslator{
 	private static String user = "berendeanicolae@gmail.com";
 	private static String passw = "IGCynGBUnY83apRHqQ2fut9OqUdw0x7oEl0SZNyxJR8";
 	private String source, target;

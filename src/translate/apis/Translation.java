@@ -39,6 +39,9 @@ public class Translation implements Iterable<String>{
     }
     
     public void add(Translation translations){
+    	if (translations==null)
+    		return;
+    	
         for (String translation : translations.dst.keySet()){
             if (dst.containsKey(translation)){
                 dst.put(translation, dst.get(translation)+translations.dst.get(translation));

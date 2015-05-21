@@ -1,5 +1,5 @@
 package translate.apis;
 
-public interface WordTranslator {
+public interface IWordTranslator {
 	public Translation getCandidates(String word);
 }

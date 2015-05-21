@@ -1,21 +1,20 @@
 package translate.apis;
 
-import translate.apis.WordTranslator;
+import translate.apis.IWordTranslator;
+import translate.http.HttpGet;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import translate.http.HttpGet;
-
-public class GoogleTranslate implements WordTranslator, SentenceTranslator{
+public class GoogleTranslate implements IWordTranslator, ISentenceTranslator{
 	private String source, target;
 
 	public GoogleTranslate(String source, String target){
@@ -40,21 +39,16 @@ public class GoogleTranslate implements WordTranslator, SentenceTranslator{
 	@Override
 	public Translation getCandidates(String word){
 		String url = buildQuery(word);
-		String content = null;
+		Document doc = null;
 		
 		try{
-			content = HttpGet.download(url);
-		}
-		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", word);
-			return null;
+			doc = HttpGet.download(url);
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
 			return null;
 		}
 		
-		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
 		translation.add(doc.getElementsByClass("t0").text());
 		Elements eList = doc.getElementsByClass("thead");
@@ -81,21 +75,16 @@ public class GoogleTranslate implements WordTranslator, SentenceTranslator{
 	@Override
 	public String translateSentence(String sentence) {
 		String url = buildQuery(sentence);
-		String content = null;
+		Document doc = null;
 		
 		try{
-			content = HttpGet.download(url);
-		}
-		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", sentence);
-			return null;
+			doc = Jsoup.connect(url).get();
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
 			return null;
 		}
 		
-		Document doc = Jsoup.parse(content);
 		return doc.getElementsByClass("t0").text();
 	}
 }

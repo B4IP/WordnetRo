@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import net.sf.extjwnl.data.POS;
 import translate.algo.Levenstein;
-import translate.apis.SentenceTranslator;
+import translate.apis.ISentenceTranslator;
 import translate.apis.GoogleTranslate;
 import translate.apis.Translation;
 import translate.apis.WordReference;
@@ -48,7 +48,7 @@ public class Translator{
 		 * Function takes a word, and a definition.
 		 * It returns the translated word.
 		 */
-		SentenceTranslator api = new GoogleTranslate("en", "ro");
+		ISentenceTranslator api = new GoogleTranslate("en", "ro");
 		String sentence = null;
 		sentence = String.format("%s%s%s%s.", prefix.get(type), word, sufix.get(type), definition);
 
@@ -71,7 +71,7 @@ public class Translator{
 		for (API api : API.values()){
 			translation.add(TranslateAPIFactory.atomicTranslate(word, api, "en", "ro"));
 		}
-		SentenceTranslator api = new GoogleTranslate("en", "ro");
+		ISentenceTranslator api = new GoogleTranslate("en", "ro");
 		WordReference wr = new WordReference("en", "ro");
 		String word_translated = null;
 		
@@ -118,7 +118,7 @@ public class Translator{
 		if (sentences.length>0){
 			translatedSent = new String[sentences.length];
 			for (int i=0; i<sentences.length; ++i){
-				translatedSent[i] = translateFromSentence(word, type, sentences[i]);
+				//translatedSent[i] = translateFromSentence(word, type, sentences[i]);
 			}
 		}
 		return translatedDef;

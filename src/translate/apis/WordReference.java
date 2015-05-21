@@ -1,18 +1,16 @@
 package translate.apis;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-
-public class WordReference implements WordTranslator{
+public class WordReference implements IWordTranslator {
 	private String source, target;
 
 	public WordReference(String source, String target){
@@ -36,14 +34,10 @@ public class WordReference implements WordTranslator{
 	@Override
 	public Translation getCandidates(String word) {
 		String url = buildQuery(word);
-		String content = null;
+		Document doc = null;
 		
 		try{
-			content = HttpGet.download(url);
-		}
-		catch (MalformedURLException e){
-			System.out.printf("Could not encode %s\n", word);
-			return null;
+			doc = HttpGet.download(url);
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());
@@ -51,7 +45,6 @@ public class WordReference implements WordTranslator{
 		}
 		
 
-		Document doc = Jsoup.parse(content);
 		Translation translation = new Translation(word);
 		
 		Element table = doc.getElementsByClass("WRD").first();

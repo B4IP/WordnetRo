@@ -1,6 +1,6 @@
 package translate.apis;
 
-import translate.apis.WordTranslator;
+import translate.apis.IWordTranslator;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -12,7 +12,7 @@ import translate.http.HttpGet;
 import translate.util.GoogleTranslate2ResultParser;
 import translate.util.entity.Translation;
 
-public class GoogleTranslate2 implements WordTranslator{
+public class GoogleTranslate2 implements IWordTranslator{
     String source, target;
     
     public GoogleTranslate2(String source, String target){

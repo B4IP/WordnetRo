@@ -4,6 +4,7 @@ package translate.apis;
 import java.io.*;
 import java.net.URLEncoder;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,7 +12,7 @@ import org.jsoup.select.Elements;
 
 import translate.http.HttpGet;
 
-public class Gsp implements WordTranslator{
+public class Gsp implements IWordTranslator{
 	String source, target;
 	
 	public Gsp(String source, String target){
@@ -38,7 +39,7 @@ public class Gsp implements WordTranslator{
 		Document doc = null;
 		
 		try{
-			doc = Jsoup.connect(url).get();
+			doc = HttpGet.download(url);
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());

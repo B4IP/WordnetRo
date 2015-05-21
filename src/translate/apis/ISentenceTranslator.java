@@ -1,5 +1,5 @@
 package translate.apis;
 
-public interface SentenceTranslator {
+public interface ISentenceTranslator {
 	public String translateSentence(String sentence);
 }

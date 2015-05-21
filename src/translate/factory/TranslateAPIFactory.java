@@ -4,13 +4,11 @@ package translate.factory;
 import translate.apis.Dictio;
 import translate.apis.Gsp;
 import translate.apis.Hallo;
-import translate.apis.WordTranslator;
+import translate.apis.IWordTranslator;
 import translate.apis.BingTranslator;
 import translate.apis.GoogleTranslate;
-//import translate.apis.GoogleTranslate2;
 import translate.apis.Translation;
 import translate.apis.WordReference;
-import translate.exception.InvalidTranslatorOptionException;
 
 public class TranslateAPIFactory {
     /**
@@ -20,14 +18,12 @@ public class TranslateAPIFactory {
      * @param toLang Same as fromLang parameter
      * @return a new Instance which will translate all input from fromLang to toLang.
      */
-    public static WordTranslator getAPIInstance(API type, String fromLang, String toLang) {
+    public static IWordTranslator getAPIInstance(API type, String fromLang, String toLang) {
         switch (type) {
-            case Bing:
-                return new BingTranslator(fromLang, toLang);
+            /*case Bing://removed because it returns a single word
+                return new BingTranslator(fromLang, toLang);*/
             case Google:
                 return new GoogleTranslate(fromLang, toLang);
-            /*case GoogleTranslate2:
-                return new GoogleTranslate2(fromLang, toLang);*/
             case Gsp:
             	return new Gsp(fromLang, toLang);
             case Hallo:
@@ -37,7 +33,7 @@ public class TranslateAPIFactory {
             case Dictio:
             	return new Dictio(fromLang, toLang);
             default:
-                throw new InvalidTranslatorOptionException();
+                throw new IllegalArgumentException();
         }
     }
     
@@ -50,7 +46,7 @@ public class TranslateAPIFactory {
      * @return 
      */
     public static Translation atomicTranslate(String word, API engine, String fromLang, String toLang) {
-        WordTranslator instance = getAPIInstance(engine, fromLang, toLang);
+        IWordTranslator instance = getAPIInstance(engine, fromLang, toLang);
         return instance.getCandidates(word);
     }
     

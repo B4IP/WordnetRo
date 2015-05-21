@@ -16,7 +16,7 @@ import org.jsoup.select.Elements;
  *
  * @author Vlad
  */
-public class Dictio implements WordTranslator {
+public class Dictio implements IWordTranslator {
     
     String source, target;
 	
