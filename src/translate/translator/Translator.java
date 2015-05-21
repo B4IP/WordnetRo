@@ -76,7 +76,7 @@ public class Translator{
 		String word_translated = null;
 		
 		String sentence_translated = api.translateSentence(sentence);
-		Translation translation = new Translation(word);
+		//Translation translation = new Translation(word);
 		
 		
 		String[] words = sentence_translated.split(" ");

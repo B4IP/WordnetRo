@@ -1,0 +1,300 @@
+﻿Testing Report for May, 19 2015
+
+Structura rapoartelor:
+		Date
+		Author
+		Name of the class/method
+		Description of the test
+		Result
+		Measures taken(in cazul unor probleme)
+
+
+
+Date 11 05 2015
+Author:
+	George Stafie
+Name of the class/method: 
+	HTTPGet
+Description of the test:
+	Through automatic testing(JUnit) the download() function was tested to check if it downloads the source code of a web page.
+Result:
+	The function correctly returns the content of the web page, excluding the ones with the diacritical marks specific to the romanian alphabet.
+Measures taken:
+	Noticed the developer about the problem.
+
+Date 11 05 2015
+Author:
+	George Stafie
+Name of the class/method:
+	HTTPPost
+Description of the test:
+	The test checked if the download() function executes correctly using "https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text=%27hello%27&To=%27ro%27&From=%27en%27" as the adresss and the developer's credidentials to login.
+Result:
+	The test executed successfully.
+
+Date 12 05 2015
+Author:
+	George Stafie
+Name of the class/method:
+	BingTranslator
+Description of the test:
+	The test checks if the translate() function return the acording translation for a given romanian word.
+Result:
+	Beacause the class uses the methods from the HTTPGet class,some of the tests failed. The ones without diacritical marks succedeed
+
+Date 14 05 2015
+Author:
+	George Stafie
+Name of the class/method:
+	Levenstein
+Description of the test:
+	The test checks using JUnit if the GetDistance() and GetNormalisedDistance() return the correct Levenstein distance between the argumenst given.
+Result:
+	The functions return the expected result.
+
+
+Date  15 05 2015
+Author:
+	George Stafie
+Name of the class/method:
+	HTTPGet
+Description of the test:
+	The test check if the previous problems with the diacritical marks has been corrected.
+Result:
+	The changes made allowed the user to see the diacritical marks correctly.
+
+
+Date  15 05 2015
+Author:
+	George Stafie
+Name of the class/method:
+	BingTranslator
+Description of the test:
+	The test check if the previous problems with the diacritical marks has been corrected(the class uses methods from the HTTPGet class).
+Result:
+	There was no problem with the diacritical marks.
+	
+	
+Date 17 05 2015
+Author:
+	Bogdan Nechita
+Name of the class/method:
+	ScriptBD
+Description of the test:
+	Checked if the script works.
+Result:
+	The script works. All tables are created.
+
+
+Date 17 05 2015
+Author:
+	Bogdan Nechita
+Name of the class/method: 
+	WordnetDataBase
+Description of the test:
+	The test checked the following: 
+		- a connection to the database
+		- the app connects to the database only if the credentials are valid
+		- the app inserts english words in the right table
+		- the app inserts romanian words in the right table
+
+Result:
+		- the connection to the database was succesful unless the credentials were wrong
+		- the app inserts the words appropriately
+		- the app inserts the words appropriately 
+Measures taken:
+	
+
+Date 17 05 2015
+Author:
+	Bogdan Nechita
+Name of the class/method:
+	WordExtractor
+Description of the test:
+	Work in progress..
+	
+	
+	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
+Name of the class/method:	
+	Class GoogleTranslate
+Description of the test:
+		Initially it was verified if the class translates the english word “forehead” correctly. 
+	The test passed because it returned the romanian word “frunte”. Then the sentence “I like you” was tested, 
+	returning the correct romanian translation “Îmi placi”. So the test for this class has succesfully passed.
+	
+	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
+Name of the class/method:
+	Class Gsp
+Description of the test:
+		For this class the english word “pear” was the one given for testing after which a list of all its 
+	translations from the Gsp site was associated to this word. The result is supposed to be this exact list. 
+	The test failed as it returned an IndexOutOfBoundsException.
+
+	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4
+Name of the class/method:
+	Class Hallo
+Description of the test:
+		Similarly to the Gsp class, the same english word “pear” was used for testing and a list of all its 
+	official translations from the Hallo site has been associated to it. The test failed as it didn’t return 
+	this list, instead it displayed the same english word “pear” that has just been written.
+Retest: 19.05.2015 
+		The test passed as it returned the said list of translations of the English work "pear" from the Hallo site.
+	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4	
+Name of the class/method:
+	Class TranslateAPIFactory
+Description of the test:
+		Initially it was verified if the class translates the english word “chair” correctly, using a number 
+	of engines like Bing, Google Translate, Hallo, Gsp and Word Reference. The right translation of the word 
+	in romanian is “scaun”. Another test was made for the phrase “I want a book”, with the correct romanian 
+	translation being “Vreau o carte”. Both tests didn’t pass because it returned an IndexOutOfBoundsException. 
+	It seems like the Gsp engine failed with the same errors as mentioned on point 2.
+
+	
+Date of completion: 16.05.2015
+Author: Daneliuc Mihai, grupa A4	
+Name of the class/method:
+	Class WordReference
+Description of the test:
+		For this class the english word “pear” was the one given for testing after which a list of all its 
+	translations from the Word Reference site was associated to this word. The result is supposed to be this 
+	exact list. The test failed because while it did return one right translation, ”păr”, it also returned 
+	the genre together with it (“păr s.m.”), which wasn’t supposed to happen.
+Retest: 19.05.2015 
+		After the test worked for “pear”, another one was made for the English word “orange” and, like “pear”, 
+		returned the right list from the Word Reference site.
+
+
+		
+		
+		
+Date 19 05 2015
+Author:
+	Hapau Bety
+Name of the class/method:
+	Translator/translateFromDefinition
+Description of the test:
+	The test returns the translation of a word based on its definition.
+Result:
+	The current implementation works only for nouns; example: for the word "apple" the returned translation is "un mar". for the word "beautiful" the translation is "un frumos".
+	
+Date 19 05 2015
+Author:
+	Hapau Bety
+Name of the class/method:
+	Translator/translateFromSentence
+Description of the test:
+	The takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
+Result:
+	The implementation partially works; 
+	example: for the word "raw" and the sentence "The meat is raw", the functuion returns "crud; crud"
+	for the word "shadow" and the sentence "I see the trees' shadow" the functuion returns 
+	"umbră; fantomă; stafie; arătare; premoniţie; mâna dreaptă; null"
+	
+
+
+
+Date of completion: 17.05.2015
+Author: Rusu Alexandru
+Interface tests on:
+	index.html
+	import.html
+	edit.html
+	register.html
+Description of the test:
+	Checking functionalities and view on different browsers and resolutions:
+	
+	index.html
+	- 1600x900
+	Google Chrome		Ok
+	Opera				Ok
+	Safari				Not ok (only the header would appear when you scroll down)
+	Firefox				Not ok (when clicking login, password input, the login and register button appear on the left upper side)
+	Internet Explorer	Not ok (same issues as on Safari)
+	
+	- 1280x768			Ok
+	- 1152x864			It doesn't look well with more then 125% zoom
+	- 1024x768			The field for utilizator goes under the logo
+	- 800x600			The login and register button can't be seen on the header when scrolling down
+	Sugestion: When scrolling down, the header should cover what is under it. Because of the transparent header, the header buttons and fields 
+	intercalate with the text on the page
+	
+	
+	
+	import.html
+	Issues:
+	When the scroll bar for the text area appear it can be resized.
+		Because of this, when over-filling the text area and zooming our or in, the text area moves to the left or rigt.
+	When I click logout it remains on the import page, the header change to it's previous view but with the login selected.
+	The submit button is always selected.
+	When on down of the page and I reload it, an white field appear in the bottom. 
+	When zooming out an white field appear in the bottom side.
+	
+	- 1600x900
+	Google Chrome		When the scroll bar for the text area appear it can be resized.
+							Because of this, when over-filling the text area and zooming our or in, the text area moves to the left or rigt.
+						When I click logout it remains on the import page, the header change to it's previous view but with the login selected.
+						The submit button is always selected.
+						When on down of the page and I reload it, an white field appear in the bottom. 
+						When zooming out an white field appear in the bottom side.
+	
+	Opera				Same as Chrome
+	Safari				Appears nothing (only submit button and logout/login button appear)
+	Firefox				Not ok (same as on Chrome + password field, the login and register button appear on the left upper side)
+	Internet Explorer	Appears nothing
+	
+	- 1280x768			Maxim size 175%
+	- 1152x864			The header goes too close to the edges when 100%, Maxim size 150%
+	- 1024x768			Maxim size 125%
+	- 800x600			Maxim size 110%
+	
+	
+	edit.html
+	Same issues as the import.html.
+	Sugestion: The text areas should keep the info on reload. 
+	
+	register.html
+	Issues:
+	The login works and it doesn't redirect me from the register page. Instead, it keeps me on the page, and edit and import buttons won't work.
+	
+	Google Chrome		Ok
+	Opera				Ok
+	Safari				Appears nothing
+	Firefox				Not ok (when logged in, password field, the login and register button appear on the left upper side)
+	Internet Explorer	Appears nothing
+	
+	The issues in size are similar with the other pages, and are mostly with the header.
+
+
+
+Date 21 05 2015
+Author:
+	Hapau Bety
+Name of the class/method:
+	Translator/translateFromDefinition
+Description of the test:
+	The test returns the translation of a word based on its definition.
+Result:
+	The previous problem was fixed. Now the translation works but only for 1.Non capitalised words and for 2.non plural nouns
+1.for the word "sun" it returned "soare" for the word "SUN" it returned "null" for the word "Sun" it returned "Sun". 
+2.for the word "apples" it returned null
+	And there were some incorect translations; for "apple" it returned "mere"
+ for "lamp", with definition "a device for giving light" it returned "lămpii"
+
+
+Date 21 05 2015
+Author:
+	Hapau Bety
+Name of the class/method:
+	Translator/translateFromSentence
+Description of the test:
+	The takes a word and a sentence with that word and returns the word translated with that same meaning as in the sentence
+Result:
+	The translation is correct; but there are no diacritical signs in the translations, and it doesn't work for capitalised words.
