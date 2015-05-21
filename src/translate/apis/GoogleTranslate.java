@@ -78,7 +78,7 @@ public class GoogleTranslate implements IWordTranslator, ISentenceTranslator{
 		Document doc = null;
 		
 		try{
-			doc = Jsoup.connect(url).get();
+			doc = HttpGet.download(url);
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());

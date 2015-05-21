@@ -10,8 +10,11 @@ public class TranslateTest{
 		IWordTranslator tr = null;
 		
 		tr = TranslateAPIFactory.getAPIInstance(API.WordReference, "en", "ro");
-		Translation candidates = tr.getCandidates("raw");
-		System.out.println(candidates);
+		System.out.println(tr.getCandidates("raw"));
+		System.out.println(tr.getCandidates("pear"));
+		System.out.println(tr.getCandidates("game"));
+		System.out.println(tr.getCandidates("tie"));
+		System.out.println(tr.getCandidates("fox"));
 		/*
 		System.out.printf("%s\n", tr.translate("Santa and tooth fairy aren't real"));
                 
