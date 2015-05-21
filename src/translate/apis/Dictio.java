@@ -46,7 +46,7 @@ public class Dictio implements WordTranslator {
         }
         Elements results = responseDocument.select("tbody td");
         for(Element e : results){
-            translation.add(e.text().split("\\[.*\\]")[0].trim());
+            translation.add(e.text().split("[\\[\\(]")[0].trim());
         }
         
         //System.out.println(responseDocument.toString());

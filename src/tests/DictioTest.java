@@ -17,7 +17,7 @@ public class DictioTest {
     
     public static void main(String[] args) {
         Dictio dictio = new Dictio("en", "ro");
-        Translation tr = dictio.getCandidates("masterpiece");
+        Translation tr = dictio.getCandidates("raw");
         System.out.println(tr);
     }
     
