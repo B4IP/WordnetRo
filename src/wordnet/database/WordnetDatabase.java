@@ -12,7 +12,7 @@ import java.util.Properties;
  *
  * @author Mihai Cimpan
  */
-public class WordnetDataBase {
+public class WordnetDatabase {
 
     private static Connection connection;
     private static int idEnglishWord = 1;
@@ -50,7 +50,7 @@ public class WordnetDataBase {
         Connection conn = null;
         PreparedStatement statement = null;
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setInt(1, ID);
             statement.setString(2, word);
@@ -69,7 +69,7 @@ public class WordnetDataBase {
         Connection conn = null;
         PreparedStatement statement = null;
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setInt(1, idCuvantRomana);
             statement.setString(2, wordRom);
@@ -98,7 +98,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
                 + "FROM cuvinte_engleza\n"
                 + "WHERE cuvant_eng = ?";
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setString(1, cuvEng);
             result = statement.executeQuery();
@@ -122,7 +122,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
                 + "FROM cuvinte_engleza\n"
                 + "WHERE cuvant_eng = ?";
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setString(1, hiper);
             result = statement.executeQuery();
@@ -145,7 +145,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
         if (idCuvEng != 0 && idHyper != 0) {
             sql = "INSERT INTO hiperonime VALUES (?, ?)";
             try {
-                conn = WordnetDataBase.getConnection();
+                conn = WordnetDatabase.getConnection();
                 statement = conn.prepareStatement(sql);
                 statement.setInt(1, idCuvEng);
                 statement.setInt(2, idHyper);
@@ -177,7 +177,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
                 + "FROM cuvinte_engleza\n"
                 + "WHERE cuvant_eng = ?";
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setString(1, cuvEng);
             result = statement.executeQuery();
@@ -201,7 +201,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
                 + "FROM cuvinte_engleza\n"
                 + "WHERE cuvant_eng = ?";
         try {
-            conn = WordnetDataBase.getConnection();
+            conn = WordnetDatabase.getConnection();
             statement = conn.prepareStatement(sql);
             statement.setString(1, mero);
             result = statement.executeQuery();
@@ -224,7 +224,7 @@ public static void insertHypernyms(String cuvEng, String hiper)
         if (idCuvEng != 0 && idMero != 0) {
             sql = "INSERT INTO meronime VALUES (?, ?)";
             try {
-                conn = WordnetDataBase.getConnection();
+                conn = WordnetDatabase.getConnection();
                 statement = conn.prepareStatement(sql);
                 statement.setInt(1, idCuvEng);
                 statement.setInt(2, idMero);

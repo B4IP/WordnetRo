@@ -1,5 +1,3 @@
-// a se vedea metoda iterateWords pentru un exemplu de interactiune
-// intre WordExtractor (ce foloseste API-ul Wordnetului) si baza de date 
 package wordnet.extract;
 
 import net.sf.extjwnl.JWNLException;
@@ -12,29 +10,29 @@ import net.sf.extjwnl.dictionary.Dictionary;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-import wordnet.database.WordnetDataBase;
+import wordnet.database.WordnetDatabase;
 import java.sql.SQLException;
+import translate.translator.Translator;
 
 /**
  *
  * @author Andrei Pricop
- * @author Mihai Cimpan (a adus mici modificari )
+ * @author Mihai Cimpan
  */
-public class WordExtractor_v2 {
+public class WordExtractor {
 
     private Dictionary dictionary;
 
     public static void main(String[] args)
             throws FileNotFoundException, JWNLException, CloneNotSupportedException, SQLException {
-    	WordExtractor_v2 we = new WordExtractor_v2(Dictionary.getDefaultResourceInstance());
+    	WordExtractor we = new WordExtractor(Dictionary.getDefaultResourceInstance());
          we.extractWords("[a](.)*");       
          we.extractHyper("[a](.)*");
          we.extractMero("[a](.)*");
-        // WordnetDataBase.runDataBaseScript(); 
-        WordnetDataBase.closeDataBaseConnection();
+        WordnetDatabase.closeDataBaseConnection();
     }
 
-    public WordExtractor_v2(Dictionary dictionary) throws SQLException {
+    public WordExtractor(Dictionary dictionary) throws SQLException {
         this.dictionary = dictionary;
     }
 
@@ -75,24 +73,33 @@ public class WordExtractor_v2 {
     }
 
     private void iterateWords(Iterator<IndexWord> iterator, String regex) throws SQLException {
-        int idEnglishWord = WordnetDataBase.getIdCuvantEngleza();
-        int idCuvantRomana = WordnetDataBase.getIdCuvantRomana();
+        int idEnglishWord = WordnetDatabase.getIdCuvantEngleza();
+        int idCuvantRomana = WordnetDatabase.getIdCuvantRomana();
         IndexWord indexWord;
         String word;
         String gloss;
         String traducere = "Traducere";
+        Translator translate = new Translator();
         while (iterator.hasNext()) {
             indexWord = iterator.next();
             word = indexWord.getLemma();
             if (word.matches(regex)) {
-                WordnetDataBase.insertEnglishWords(idEnglishWord, word);
+                //WordnetDatabase.insertEnglishWords(idEnglishWord, word);
                 System.out.println("---------------------------");
                 System.out.println(idEnglishWord + "  " + word);
                 for (int i = 0; i < indexWord.getSenses().size(); i++) {
-                    gloss = indexWord.getSenses().get(i).getSynset().getGloss();
-                    // traducere = modul3Traducere(word, gloss);
-                    WordnetDataBase.insertRomanianWords(idCuvantRomana, traducere, word, gloss, idEnglishWord);
-                    
+                    gloss = indexWord.getSenses().get(i).getSynset().getGloss();                  
+                    traducere = translate.translate(word, indexWord.getPOS(), gloss);
+                    if(traducere==null)
+                    {   // insert 0 to traslatedBy column 
+                        WordnetDatabase.insertRomanianWords(idCuvantRomana, traducere, word, gloss, idEnglishWord);
+                        traducere = word;
+                        continue;
+                    }
+                    System.out.println("Traducere ---------------------");
+                    System.out.println(traducere);
+                    System.out.println("Traducere ---------------------");
+                  //  WordnetDatabase.insertRomanianWords(idCuvantRomana, traducere, word, gloss, idEnglishWord);                    
                     System.out.print("     ");
                     System.out.print("@ " + idCuvantRomana + " @    ");
                     System.out.print("@ " + traducere + " @    ");
@@ -107,8 +114,8 @@ public class WordExtractor_v2 {
                 break;
             }
         }
-        WordnetDataBase.setIdCuvantEngleza(idEnglishWord);
-        WordnetDataBase.setIdCuvantRomana(idCuvantRomana);
+        WordnetDatabase.setIdCuvantEngleza(idEnglishWord);
+        WordnetDatabase.setIdCuvantRomana(idCuvantRomana);
     }
 
     private void iterateWordsHyper(Iterator<IndexWord> iterator, String regex) throws JWNLException, SQLException {
@@ -128,7 +135,7 @@ public class WordExtractor_v2 {
                             if (hyper.matches(regex)) {
                                 // call build relationships
                                 System.out.println("      Hypernym: " + hyper);
-                                WordnetDataBase.insertHypernyms(lemma, hyper);
+                                WordnetDatabase.insertHypernyms(lemma, hyper);
                             }
                         }
                     }
@@ -153,8 +160,8 @@ public class WordExtractor_v2 {
                             String mero = meronyms.get(j).getSynset().getWords().get(k).getLemma();
                             if (mero.matches(regex)) {
                                 System.out.println("      Meronym: " + mero);
-                                WordnetDataBase.insertMeronyms(lemma, mero);                          
-                                // System.out.println(lemma + " => " + mero);
+                                WordnetDatabase.insertMeronyms(lemma, mero);                          
+
                             }
                         }
                     }
