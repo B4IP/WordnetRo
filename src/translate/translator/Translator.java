@@ -76,6 +76,8 @@ public class Translator{
 		String word_translated = null;
 		
 		String sentence_translated = api.translateSentence(sentence);
+		if (sentence_translated==null)
+			return null;
 		//Translation translation = new Translation(word);
 		
 		
