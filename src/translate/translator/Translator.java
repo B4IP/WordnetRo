@@ -73,12 +73,9 @@ public class Translator{
 			translation.add(TranslateAPIFactory.atomicTranslate(word, api, "en", "ro"));
 		}
 		ISentenceTranslator api = new GoogleTranslate("en", "ro");
-		WordReference wr = new WordReference("en", "ro");
 		String word_translated = null;
 		
 		String sentence_translated = api.translateSentence(sentence);
-		if (sentence_translated==null)
-			return null;
 		//Translation translation = new Translation(word);
 		
 		
@@ -89,7 +86,6 @@ public class Translator{
 		}
 		
 		double score = 0, max_score = 0;
-	    translation = wr.getCandidates(word);
 	    for (String element : translation){
 	    	
 	    	//System.out.print(element + "-");
