@@ -61,17 +61,11 @@ COMMIT;
 CREATE OR REPLACE FUNCTION getContinueTranslatePosition 
 RETURN NUMBER 
 IS
-CURSOR ultimul_tradus IS 
-SELECT modificat, ID_cuvant_rom
-FROM cuvinte_romana;
 ID_romanian_contiune NUMBER :=1 ;
 BEGIN 
-
-    FOR linie IN ultimul_tradus LOOP
-        IF linie.modificat = 1 THEN 
-            ID_romanian_contiune := linie.ID_cuvant_rom;
-        END IF;
-    END LOOP;
+    SELECT MAX(ID_cuvant_rom) INTO ID_romanian_contiune
+    FROM cuvinte_romana
+    WHERE modificat = 1; 
     RETURN ID_romanian_contiune;
 END;
 /
