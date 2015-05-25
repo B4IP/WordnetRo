@@ -85,11 +85,11 @@ public class Translator{
 		for (int i=0; i < words.length; i++)
 		{
 			words[i] = words[i].toLowerCase();
-			if (words[i].lastIndexOf("ul")!= -1)
+			if (words[i].lastIndexOf("ul")!= -1 && words[i].lastIndexOf("ul") == words[i].length()-2)
 			{
 				words[i] = words[i].substring(0,words[i].lastIndexOf("ul"));
 			}
-			else if (words[i].lastIndexOf("ului")!= -1)
+			else if (words[i].lastIndexOf("ului")!= -1 && words[i].lastIndexOf("ul") == words[i].length()-4)
 			{
 				words[i] = words[i].substring(0,words[i].lastIndexOf("ului"));
 			}
