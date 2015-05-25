@@ -38,6 +38,8 @@ public class Hallo implements IWordTranslator {
 		
 		try{
 			doc = HttpGet.download(url);
+			if (doc==null)
+				return null;
 		}
 		catch (IOException e){
 			System.out.printf("Error while downloading %s (%s)\n", url, e.getMessage());

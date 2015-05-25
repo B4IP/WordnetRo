@@ -39,6 +39,8 @@ public class Dictio implements IWordTranslator {
                 userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 "
                         + "(KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36").
                 post();
+            if (responseDocument==null)
+            	return null;
         }
         catch(IOException e) {
             System.err.println("Could not download content from " + url);
