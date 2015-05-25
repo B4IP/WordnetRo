@@ -87,11 +87,11 @@ public class Translator{
 			words[i] = words[i].toLowerCase();
 			if (words[i].endsWith("ul"))
 			{
-				words[i].substring(0,words[i].length() - 2);
+				words[i] = words[i].substring(0,words[i].length() - 2);
 			}
 			if (words[i].endsWith("ului"))
 			{
-				words[i].substring(0,words[i].length() - 4);
+				words[i] = words[i].substring(0,words[i].length() - 4);
 			}
 			
 			
