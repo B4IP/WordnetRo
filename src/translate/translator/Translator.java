@@ -85,14 +85,15 @@ public class Translator{
 		for (int i=0; i < words.length; i++)
 		{
 			words[i] = words[i].toLowerCase();
-			if (words[i].lastIndexOf("ul")!= -1 && words[i].lastIndexOf("ul") == words[i].length()-2)
+			if (words[i].endsWith("ul"))
 			{
-				words[i] = words[i].substring(0,words[i].lastIndexOf("ul"));
+				words[i].substring(0,words[i].length() - 2);
 			}
-			else if (words[i].lastIndexOf("ului")!= -1 && words[i].lastIndexOf("ul") == words[i].length()-4)
+			if (words[i].endsWith("ului"))
 			{
-				words[i] = words[i].substring(0,words[i].lastIndexOf("ului"));
+				words[i].substring(0,words[i].length() - 4);
 			}
+			
 			
 		}
 		
