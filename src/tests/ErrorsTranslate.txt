@@ -1,0 +1,66 @@
+Mi-a dat de cateva ori eroarea de mai jos si dupa ce m-am deconectat de la internet si m-am reconectat a sarit hopul
+de la cuvantul cu IDul 195
+
+
+_______________________________________________________________________________________________________________
+Eroare1:
+
+195 - ability
+Error while downloading http://ro-en.gsp.ro/index.php?d=e&q=ability (Read timed out)
+Error while downloading http://www.wordreference.com/enro/ability (Internal Server Error)
+Exception in thread "main" java.lang.NullPointerException
+	at translate.translator.Translator.translateFromSentence(Translator.java:91)
+	at translate.translator.Translator.translateFromDefinition(Translator.java:62)
+	at translate.translator.Translator.translate(Translator.java:122)
+	at wordnet.translator.WordnetTranslator.translateWords(WordnetTranslator.java:40)
+	at wordnet.extractor.WordnetExtractor.main(WordnetExtractor.java:40)
+Java Result: 1
+BUILD SUCCESSFUL (total time: 5 minutes 8 seconds)
+_______________________________________________________________________________________________________________
+
+Eroare2:
+
+189 - abies lasiocarpa
+Error while downloading http://www.wordreference.com/enro/abies+lasiocarpa (Internal Server Error)
+Error while downloading http://www.wordreference.com/enro/abies+lasiocarpa (Internal Server Error)
+Exception in thread "main" java.lang.NullPointerException
+	at translate.translator.Translator.translateFromSentence(Translator.java:91)
+	at translate.translator.Translator.translateFromDefinition(Translator.java:62)
+	at translate.translator.Translator.translate(Translator.java:122)
+	at wordnet.translator.WordnetTranslator.translateWords(WordnetTranslator.java:40)
+	at wordnet.extractor.WordnetExtractor.main(WordnetExtractor.java:40)
+Java Result: 1
+BUILD SUCCESSFUL (total time: 4 seconds)
+_______________________________________________________________________________________________________________
+
+Eroare 3: 
+
+195 - ability
+Error while downloading http://www.wordreference.com/enro/ability (Internal Server Error)
+Error while downloading http://www.wordreference.com/enro/ability (Internal Server Error)
+Exception in thread "main" java.lang.NullPointerException
+	at translate.translator.Translator.translateFromSentence(Translator.java:91)
+	at translate.translator.Translator.translateFromDefinition(Translator.java:62)
+	at translate.translator.Translator.translate(Translator.java:122)
+	at wordnet.translator.WordnetTranslator.translateWords(WordnetTranslator.java:40)
+	at wordnet.extractor.WordnetExtractor.main(WordnetExtractor.java:40)
+Java Result: 1
+BUILD SUCCESSFUL (total time: 4 seconds)
+_______________________________________________________________________________________________________________
+
+
+Eroare 4: 
+
+195 - ability
+Error while downloading http://www.wordreference.com/enro/ability (Internal Server Error)
+Error while downloading http://www.wordreference.com/enro/ability (Internal Server Error)
+Exception in thread "main" java.lang.NullPointerException
+	at translate.translator.Translator.translateFromSentence(Translator.java:91)
+	at translate.translator.Translator.translateFromDefinition(Translator.java:62)
+	at translate.translator.Translator.translate(Translator.java:122)
+	at wordnet.translator.WordnetTranslator.translateWords(WordnetTranslator.java:40)
+	at wordnet.extractor.WordnetExtractor.main(WordnetExtractor.java:40)
+Java Result: 1
+BUILD SUCCESSFUL (total time: 4 seconds)
+_______________________________________________________________________________________________________________
+
