@@ -85,11 +85,13 @@ public class Translator{
 		for (int i=0; i < words.length; i++)
 		{
 			words[i] = words[i].toLowerCase();
+			
 		}
 		
 		double score = 0, max_score = 0;
 	    for (String element : translation){
-	    	
+	    	if (element.length()<3)
+	    		continue;
 	    	//System.out.print(element + "-");
 			for (int i=0; i<words.length; i++)
 			{
