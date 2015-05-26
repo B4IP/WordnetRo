@@ -22,11 +22,30 @@ END;
 
 BEGIN 
     DBMS_OUTPUT.PUT_LINE ( getContinueTranslatePosition() );
+    DBMS_OUTPUT.PUT_LINE ( getNumberOfFails() );
     DBMS_OUTPUT.PUT_LINE ( getEnglishWord(30) );
     DBMS_OUTPUT.PUT_LINE ( getEnglishGloss(30) );
     DBMS_OUTPUT.PUT_LINE ( getEnglishPOS(30) );
 END;
 /
 
+SELECT COUNT(ID_cuvant_rom)
+FROM cuvinte_romana
+WHERE modificat = 0;
+
+SELECT COUNT(ID_cuvant_rom)
+FROM cuvinte_romana
+WHERE modificat = 1 OR modificat = -1;
+
+SELECT COUNT(ID_cuvant_rom)
+FROM cuvinte_romana
+WHERE modificat = 1;
+
+SELECT COUNT(ID_cuvant_rom)
+FROM cuvinte_romana
+WHERE modificat = -1;
 
 
+  SELECT ID_cuvant_rom
+  FROM cuvinte_romana
+  WHERE modificat = -1;

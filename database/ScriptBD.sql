@@ -43,8 +43,13 @@ ID_hiperonim_eng_FK NUMBER NOT NULL
 );
 
 ALTER TABLE hiperonime 
-ADD CONSTRAINT ID_hiperonim FOREIGN KEY ( ID_hiperonim_eng_FK ) 
+ADD CONSTRAINT hipe_ID_cuvant_eng_FK FOREIGN KEY ( ID_cuvant_eng_FK ) 
 REFERENCES cuvinte_engleza ( ID_cuvant_eng );
+
+ALTER TABLE hiperonime 
+ADD CONSTRAINT hipe_ID_hipe_eng_FK FOREIGN KEY ( ID_hiperonim_eng_FK ) 
+REFERENCES cuvinte_engleza ( ID_cuvant_eng );
+
 
 CREATE TABLE meronime (
 ID_cuvant_eng_FK NUMBER NOT NULL,
@@ -52,7 +57,11 @@ ID_meronim_eng_FK NUMBER NOT NULL
 );
 
 ALTER TABLE meronime 
-ADD CONSTRAINT ID_meronim FOREIGN KEY ( ID_meronim_eng_FK ) 
+ADD CONSTRAINT mero_ID_cuvant_eng_FK FOREIGN KEY ( ID_cuvant_eng_FK ) 
+REFERENCES cuvinte_engleza ( ID_cuvant_eng );
+
+ALTER TABLE meronime 
+ADD CONSTRAINT mero_ID_meronim_eng_FK FOREIGN KEY ( ID_meronim_eng_FK ) 
 REFERENCES cuvinte_engleza ( ID_cuvant_eng );
 
 COMMIT;
@@ -62,10 +71,25 @@ CREATE OR REPLACE FUNCTION getContinueTranslatePosition
 RETURN NUMBER 
 IS
 ID_romanian_contiune NUMBER :=1 ;
+
+ID1 NUMBER :=1 ;
+ID2 NUMBER :=1 ;
+
 BEGIN 
-    SELECT MAX(ID_cuvant_rom) INTO ID_romanian_contiune
+    SELECT MAX(ID_cuvant_rom) INTO ID1
+    FROM cuvinte_romana
+    WHERE modificat = -1; 
+
+    SELECT MAX(ID_cuvant_rom) INTO ID2
     FROM cuvinte_romana
     WHERE modificat = 1; 
+    
+    ID_romanian_contiune := ID2;
+    
+    IF ID1 > ID2 THEN
+        ID_romanian_contiune := ID1;
+    END IF;
+    
     RETURN ID_romanian_contiune;
 END;
 /
@@ -118,4 +142,16 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE FUNCTION getNumberOfFails
+RETURN NUMBER 
+IS
+numberOfFails NUMBER;
+BEGIN 
 
+SELECT COUNT(ID_cuvant_rom) INTO numberOfFails
+FROM cuvinte_romana
+WHERE modificat = -1;
+
+RETURN numberOfFails;
+END;
+/

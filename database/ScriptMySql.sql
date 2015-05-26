@@ -32,7 +32,7 @@ ADD CONSTRAINT cuv_rom_ID_cuv_eng_FK FOREIGN KEY ( ID_cuvant_eng_FK )
 REFERENCES cuvinte_engleza ( ID_cuvant_eng );
 
 CREATE TABLE hiperonime (
-ID_cuvant_eng_FK DOUBLE NOT NULL,
+ID_cuvant_eng_FK DOUBLE NOT NULL, 
 ID_hiperonim_eng_FK DOUBLE NOT NULL
 );
 
