@@ -22,20 +22,18 @@ public class WordnetDatabase {
 
     static {
         try {
-           
-            
+
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Properties properties = new Properties();
             properties.setProperty("user", "mihai");
             properties.setProperty("password", "mihai");
-            
+
             /*
-            String url = "jdbc:oracle:thin:@85.122.23.37:1521:xe";
-            Properties properties = new Properties();
-            properties.setProperty("user", "stud98");
-            properties.setProperty("password", "MIHAI");  
-            */
-             
+             String url = "jdbc:oracle:thin:@85.122.23.37:1521:xe";
+             Properties properties = new Properties();
+             properties.setProperty("user", "stud98");
+             properties.setProperty("password", "MIHAI");  
+             */
             connection = DriverManager.getConnection(url, properties);
             System.out.println("Database has started!");
         } catch (SQLException error) {
@@ -53,7 +51,7 @@ public class WordnetDatabase {
         }
     }
 
-    public static void insertEnglishWords(int ID, String word){
+    public static void insertEnglishWords(int ID, String word) {
         String sql = "INSERT INTO cuvinte_engleza VALUES (?, ?)";
         Connection conn = null;
         PreparedStatement statement = null;
@@ -71,10 +69,8 @@ public class WordnetDatabase {
         }
     }
 
-    public static void insertRomanianWords
-    (int idCuvantRomana, String wordRom, String wordEng, String glossa,
-     int idCuvantEngleza, int modificatDe, String glossa_tradusa, String pos)
-            {
+    public static void insertRomanianWords(int idCuvantRomana, String wordRom, String wordEng, String glossa,
+            int idCuvantEngleza, int modificatDe, String glossa_tradusa, String pos) {
         String sql = "INSERT INTO cuvinte_romana VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement statement = null;
@@ -98,16 +94,16 @@ public class WordnetDatabase {
         }
     }
 
-    
-public static void insertHypernyms(int idCuvantEng, String hiper, String glossa) {
-        
-    String sql;
+    public static void insertHypernyms(int idCuvantEng, String hiper, String glossa) {
+
+        String sql;
         Connection conn;
         PreparedStatement statement;
         ResultSet result;
         int idHyper = 0;
+        //int idGlossHyper = 0;
 
-        String rezultat = " ";     
+        String rezultat = " ";
         sql = "SELECT ID_cuvant_eng_FK \n"
                 + "FROM cuvinte_romana \n"
                 + "WHERE lower(cuvant_eng) = lower(?) AND lower(glossa) = lower(?)";
@@ -118,8 +114,8 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             statement.setString(2, glossa);
             result = statement.executeQuery();
             while (result.next()) {
-                rezultat = rezultat + result.getString("ID_cuvant_eng_FK") + "#";
                 idHyper = Integer.parseInt(result.getString("ID_cuvant_eng_FK"));
+               //idGlossHyper =  Integer.parseInt(result.getString("ID_cuvant_eng_FK"));
             }
             rezultat = rezultat + " @";
             result.close();
@@ -153,17 +149,14 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             System.out.println("-> @ NOT OK!");
         }
     }
-    
-      public static void insertMeronyms(int idCuvantEng, String mero, String glossa) {
+
+    public static void insertMeronyms(int idCuvantEng, String mero, String glossa) {
         String sql;
         Connection conn;
         PreparedStatement statement;
         ResultSet result;
         int idMero = 0;
-
         String rezultat = "";
-        
-
         sql = "SELECT ID_cuvant_eng_FK \n"
                 + "FROM cuvinte_romana \n"
                 + "WHERE lower(cuvant_eng) = lower(?) AND lower(glossa) = lower(?)";
@@ -209,38 +202,10 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             System.out.println("-> @ NOT OK!");
         }
     }
-      
-      /*
-      public static void updateRomanianWordTranslation
-    (int idCuvantRomana, String wordRom, int modificatDe, String glossa_tradusa)
-            {
-        String sql = "INSERT INTO cuvinte_romana VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        Connection conn = null;      
-        PreparedStatement statement = null;
-        try {
-            conn = WordnetDatabase.getConnection();
-            statement = conn.prepareStatement(sql);
-            statement.setInt(1, idCuvantRomana);
-            statement.setString(2, wordRom);
-            statement.setString(3, wordEng);
-            statement.setString(4, glossa);
-            statement.setInt(5, idCuvantEngleza);
-            statement.setInt(6, modificatDe);
-            statement.setString(7, glossa_tradusa);
-            statement.setString(8, pos);
-            statement.executeQuery();
-            statement.close();
-        } catch (SQLException eroare) {
-            System.out.println("Error on insertRomanianWords");
-            eroare.printStackTrace();
-            System.exit(0);
-        }
-    }
-      */
+
     
-    public static int getContiunePosition ()
-    {
-        
+    public static int getContiunePosition() {
+
         Connection conn;
         CallableStatement getContinueTranslatePosition;
         String function;
@@ -251,20 +216,17 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             getContinueTranslatePosition = conn.prepareCall(function);
             getContinueTranslatePosition.registerOutParameter(1, Types.NUMERIC);
             getContinueTranslatePosition.executeUpdate();
-            position = getContinueTranslatePosition.getInt(1);  
+            position = getContinueTranslatePosition.getInt(1);
             getContinueTranslatePosition.close();
-        }
-        catch (SQLException error)
-        {
+        } catch (SQLException error) {
             System.out.println("Error on getContiunePosition");
             error.printStackTrace();
         }
         return position;
     }
-    
-     public static int getStopPosition ()
-    {
-        
+
+    public static int getStopPosition() {
+
         Connection conn;
         CallableStatement getStopPosition;
         String function;
@@ -275,20 +237,17 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             getStopPosition = conn.prepareCall(function);
             getStopPosition.registerOutParameter(1, Types.NUMERIC);
             getStopPosition.executeUpdate();
-            position = getStopPosition.getInt(1);   
+            position = getStopPosition.getInt(1);
             getStopPosition.close();
-        }
-        catch (SQLException error)
-        {
+        } catch (SQLException error) {
             System.out.println("Error on getStopPosition");
             error.printStackTrace();
         }
         return position;
     }
-     
-       public static String getEnglishWord (int idCuvantRomana)
-    {
-        
+
+    public static String getEnglishWord(int idCuvantRomana) {
+
         Connection conn;
         CallableStatement getEnglishWord;
         String function;
@@ -300,11 +259,9 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             getEnglishWord.registerOutParameter(1, Types.VARCHAR);
             getEnglishWord.setInt(2, idCuvantRomana);
             getEnglishWord.executeUpdate();
-            word = getEnglishWord.getString(1);  
+            word = getEnglishWord.getString(1);
             getEnglishWord.close();
-        }
-        catch (SQLException error)
-        {
+        } catch (SQLException error) {
             System.out.println("Error on getEnglishWord");
             WordnetDatabase.closeDataBaseConnection();
             error.printStackTrace();
@@ -312,10 +269,9 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
         }
         return word;
     }
-       
-       public static String getEnglishGloss (int idCuvantRomana)
-    {
-        
+
+    public static String getEnglishGloss(int idCuvantRomana) {
+
         Connection conn;
         CallableStatement getEnglishGloss;
         String function;
@@ -327,11 +283,9 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             getEnglishGloss.registerOutParameter(1, Types.VARCHAR);
             getEnglishGloss.setInt(2, idCuvantRomana);
             getEnglishGloss.executeUpdate();
-            gloss = getEnglishGloss.getString(1);  
+            gloss = getEnglishGloss.getString(1);
             getEnglishGloss.close();
-        }
-        catch (SQLException error)
-        {
+        } catch (SQLException error) {
             System.out.println("Error on getEnglishGloss");
             WordnetDatabase.closeDataBaseConnection();
             error.printStackTrace();
@@ -339,10 +293,9 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
         }
         return gloss;
     }
-       
-       public static POS getEnglishPOS (int idCuvantRomana)
-    {
-        
+
+    public static POS getEnglishPOS(int idCuvantRomana) {
+
         Connection conn;
         CallableStatement getEnglishPOS;
         String function;
@@ -354,11 +307,9 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             getEnglishPOS.registerOutParameter(1, Types.VARCHAR);
             getEnglishPOS.setInt(2, idCuvantRomana);
             getEnglishPOS.executeUpdate();
-            posString = getEnglishPOS.getString(1);  
+            posString = getEnglishPOS.getString(1);
             getEnglishPOS.close();
-        }
-        catch (SQLException error)
-        {
+        } catch (SQLException error) {
             System.out.println("Error on getEnglishPOS");
             WordnetDatabase.closeDataBaseConnection();
             error.printStackTrace();
@@ -366,14 +317,13 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
         }
         return POS.valueOf(posString.toUpperCase());
     }
-       
-     public static void updateRomaninWord (int idCuvantRomana, String traducere, String glossa, int modificat)
-     {
-        String sql =    "UPDATE cuvinte_romana \n" +
-                        "SET cuvant_rom = ?,\n" +
-                        "glossa_tradusa = ?,\n" +
-                        "modificat = ? \n" +
-                        "WHERE ID_cuvant_rom = ?";
+
+    public static void updateRomaninWord(int idCuvantRomana, String traducere, String glossa, int modificat) {
+        String sql = "UPDATE cuvinte_romana \n"
+                + "SET cuvant_rom = ?,\n"
+                + "glossa_tradusa = ?,\n"
+                + "modificat = ? \n"
+                + "WHERE ID_cuvant_rom = ?";
         Connection conn = null;
         PreparedStatement statement = null;
         try {
@@ -390,14 +340,13 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             eroare.printStackTrace();
             System.exit(0);
         }
-         
-     }
-     
-      public static void updateOnTraslationFail (int idCuvantRomana)
-     {
-        String sql =    "UPDATE cuvinte_romana \n" +
-                        "SET modificat = ?,\n" +
-                        "WHERE ID_cuvant_rom = ?";
+
+    }
+
+    public static void updateOnTraslationFail(int idCuvantRomana) {
+        String sql = "UPDATE cuvinte_romana \n"
+                + "SET modificat = ?,\n"
+                + "WHERE ID_cuvant_rom = ?";
         Connection conn = null;
         PreparedStatement statement = null;
         int modificat = -1;
@@ -413,8 +362,59 @@ public static void insertHypernyms(int idCuvantEng, String hiper, String glossa)
             eroare.printStackTrace();
             System.exit(0);
         }
-         
-     }
+
+    }
+
+    public static int[] getFailedToTranslateIDs() {
+        Connection conn;
+        CallableStatement getNumberOfFails;
+        String function;
+        function = "{? = call getNumberOfFails}";
+        int numberOfFails = -1;
+        try {
+            conn = WordnetDatabase.getConnection();
+            getNumberOfFails = conn.prepareCall(function);
+            getNumberOfFails.registerOutParameter(1, Types.NUMERIC);
+            getNumberOfFails.executeUpdate();
+            numberOfFails = getNumberOfFails.getInt(1);
+            getNumberOfFails.close();
+        } catch (SQLException error) {
+            System.out.println("Error on getEnglishPOS");
+            WordnetDatabase.closeDataBaseConnection();
+            error.printStackTrace();
+            System.exit(0);
+        }
+
+        if (numberOfFails != -1) {
+            int listOfFailedTraslations[] = new int[numberOfFails];
+            String sql;
+            PreparedStatement statement;
+            ResultSet result;
+            int idCuvnatRomana = 0;
+            int iterator = 0;
+            sql = "SELECT ID_cuvant_rom \n"
+                    + "FROM cuvinte_romana \n"
+                    + "WHERE modificat = -1";
+            try {
+                conn = WordnetDatabase.getConnection();
+                statement = conn.prepareStatement(sql);
+                result = statement.executeQuery();
+                while (result.next()) {
+                    idCuvnatRomana = Integer.parseInt(result.getString("ID_cuvant_rom"));
+                    listOfFailedTraslations[iterator++] = idCuvnatRomana;
+                }
+                result.close();
+                statement.close();
+            } catch (SQLException eroare) {
+                System.out.println("Error on insertMeronyms");
+                eroare.printStackTrace();
+                System.exit(0);
+            }
+            return listOfFailedTraslations;
+        }
+
+        return null;
+    }
 
     public static Connection getConnection() {
         return connection;
