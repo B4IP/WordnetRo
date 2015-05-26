@@ -53,6 +53,8 @@ public class Translator{
 		sentence = String.format("%s%s%s%s.", prefix.get(type), word, sufix.get(type), definition);
 
 		String tr = api.translateSentence(sentence);
+		if (tr==null)
+			return null;
 		int index = tr.indexOf(separator.get(type));
 		if (index<0)
 			return translateFromSentence(word, type, sentence);
@@ -61,6 +63,8 @@ public class Translator{
 		if (!trWord.startsWith(transPref.get(type)))
 			return translateFromSentence(word, type, sentence);
 		trWord = trWord.substring(transPref.get(type).length()).trim();
+		if (trWord.length()==0)
+			return translateFromSentence(word, type, sentence);
 		
 		return trWord;
 	}
