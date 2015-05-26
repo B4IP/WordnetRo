@@ -12,9 +12,6 @@ import java.util.Iterator;
 
 import wordnet.database.WordnetDatabase;
 import wordnet.translator.WordnetTranslator;
-import java.sql.SQLException;
-import java.util.List;
-import net.sf.extjwnl.data.Word;
 import translate.translator.Translator;
 
 /**
@@ -35,9 +32,11 @@ public class WordnetExtractor {
          WordnetDatabase.setIdCuvantEngleza(1);
          we.extractHyper("[a-b](.)*");
          WordnetDatabase.setIdCuvantEngleza(1);
-        we.extractMero("[a-b](.)*");       
-                */
-        WordnetTranslator.translateWords();
+         we.extractMero("[a-b](.)*");       
+          */
+        
+        //WordnetTranslator.translateWords();
+        WordnetTranslator.translateFailedTranslations();
         WordnetDatabase.closeDataBaseConnection();
     }
 
@@ -89,28 +88,21 @@ public class WordnetExtractor {
         String gloss;
         String traducere = "traducere_lipsa";
         String glossa_tradusa = "glossa_lipsa";
-        String hash_word = "ceva";
         
         Translator translate = new Translator();
         while (iterator.hasNext()) {
             indexWord = iterator.next();        
             word = indexWord.getLemma();
             String tip = indexWord.getPOS().getLabel();
-            //POS da = POS.valueOf(tip.toUpperCase());
-           // tip = da.getLabel();
             if (word.matches(regex)) {
                 
                WordnetDatabase.insertEnglishWords(idEnglishWord, word);                
                 System.out.println("---------------------------");
                 System.out.println(idEnglishWord + " WordWord : "  + word + " tip: " + tip );
-                //System.out.println(" Hash -> " + hash_word);
                 
-                for (int i = 0; i < indexWord.getSenses().size(); i++) {
-                    List<Word> words = indexWord.getSenses().get(i).getWords();
-                   
+                for (int i = 0; i < indexWord.getSenses().size(); i++) {                
                     gloss = indexWord.getSenses().get(i).getSynset().getGloss(); 
-
-                  WordnetDatabase.insertRomanianWords (idCuvantRomana, traducere, word, gloss, idEnglishWord, 0, glossa_tradusa, tip);  
+                    WordnetDatabase.insertRomanianWords (idCuvantRomana, traducere, word, gloss, idEnglishWord, 0, glossa_tradusa, tip);  
                     
                     System.out.print("     ");
                     System.out.print("@ " + idCuvantRomana + " @    ");
@@ -138,10 +130,8 @@ public class WordnetExtractor {
             indexWord = iterator.next();           
             if (indexWord.getLemma().matches(regex)) {
                 lemma = indexWord.getLemma();
-                //hash_word = lemma.hashCode();
                 System.out.println("------------------");
                 System.out.println(ID + " WordHyper: " + lemma);
-                //System.out.println(" Hash -> " + hash_word);
                 for (int i = 0; i < indexWord.getSenses().size(); i++) {
                     PointerTargetNodeList hypernyms = PointerUtils.getDirectHypernyms(indexWord.getSenses().get(i));                 
                     for (int j = 0; j < hypernyms.size(); j++) {
@@ -173,7 +163,7 @@ public class WordnetExtractor {
             if (indexWord.getLemma().matches(regex)) {
                 lemma = indexWord.getLemma();
                 System.out.println("------------------");
-                System.out.println(ID + "WordMero: " + lemma);
+                System.out.println(ID + " WordMero: " + lemma);
                 for (int i = 0; i < indexWord.getSenses().size(); i++) {
                     PointerTargetNodeList meronyms = PointerUtils.getMeronyms(indexWord.getSenses().get(i));
                     for (int j = 0; j < meronyms.size(); j++) {
@@ -193,7 +183,8 @@ public class WordnetExtractor {
         }
          WordnetDatabase.setIdCuvantEngleza(ID);
     }
-
+    
+            
     private Iterator<IndexWord> findStartPosition(Iterator<IndexWord> iterator, String regex) {
         while (iterator.hasNext()) {
             if (iterator.next().getLemma().matches(regex)) {
