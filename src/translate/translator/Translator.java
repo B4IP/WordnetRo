@@ -63,6 +63,8 @@ public class Translator{
 		if (!trWord.startsWith(transPref.get(type)))
 			return translateFromSentence(word, type, sentence);
 		trWord = trWord.substring(transPref.get(type).length()).trim();
+		if (trWord.length()==0)
+			return translateFromSentence(word, type, sentence);
 		
 		return trWord;
 	}
@@ -87,6 +89,15 @@ public class Translator{
 		for (int i=0; i < words.length; i++)
 		{
 			words[i] = words[i].toLowerCase();
+			if (words[i].endsWith("ul"))
+			{
+				words[i] = words[i].substring(0,words[i].length() - 2);
+			}
+			if (words[i].endsWith("ului"))
+			{
+				words[i] = words[i].substring(0,words[i].length() - 4);
+			}
+			
 			
 		}
 		
