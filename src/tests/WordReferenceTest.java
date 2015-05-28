@@ -48,4 +48,20 @@ public class WordReferenceTest {
 
 
     }
+    @Test
+    public void getYetOtherCanidatesTest(){
+        WordReference wordReference=new WordReference("en","ro");
+        Set<String> translation=new HashSet<String>();
+        translation.add("imi placi");
+
+
+
+        Translation result = wordReference.getCandidates("I like you");
+
+        for(String s:result){
+            assertTrue(s, translation.contains(s));
+        }
+
+
+    }
 }

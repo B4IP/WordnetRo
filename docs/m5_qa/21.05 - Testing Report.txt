@@ -137,6 +137,9 @@ Description of the test:
 	The test failed as it returned an IndexOutOfBoundsException.
 Retest: 21.05.2015
 	Later, on 21.05.2015 the test passed as it returned the wanted list of translations from the Gsp site and the Romanian diacritics were eliminated as well.
+Retest: 28.05.2015
+	On 28.05.2015 the test once again passed because a case was made whether the English sentence "I like a book" wouldn't return anything related to the Romanian
+	translation "Imi place o carte" and indeed it didn't.
 
 	
 Date of completion: 16.05.2015
@@ -151,7 +154,9 @@ Retest: 19.05.2015
 		The test passed as it returned the said list of translations of the English work "pear" from the Hallo site.
 Retest: 21.05.2015
 	    Later, on 21.05.2015 the test passed again as it returned the wanted list of translations from the Hallo site and the Romanian diacritics were eliminated as well.
-
+	Retest: 28.05.2015
+        On 28.05.2015 the test once again passed because a case was made whether the English sentence "I like a book" wouldn't return anything related to the Romanian
+        translation "Imi place o carte" and indeed it didn't.
 Date of completion: 16.05.2015
 Author: Daneliuc Mihai, grupa A4	
 Name of the class/method:
@@ -165,6 +170,11 @@ Description of the test:
 Retest: 21.05.2015
     Later, on 21.05.2015 the test passed for the word “chair”, but it seems like the Dictio,Gsp,Word Reference and Hallo sites are unable to return the proper translation for the phrase “I want a book”.
     Like in the previous tests the Romanian diacritics were eliminated.
+Retest: 28.05.2015
+    On 28.05.2015 a different test was made for each engine. The English sentence "I hope it succeeds" was given for the test. The strategy involved creating a list
+containing the possible Romanian translations "Sper sa reuseasca" and "Sper ca reuseste" and then checking whether the translations of each engine would contain
+at least one of these 2 options. The test passed because for Google Translate it was verified if at least one of the 2 options presented was the right one and indeed it was.
+As for the other engines it was verified whether neither of those 2 solutions was the right one and once again the test passed.
 
 	
 Date of completion: 16.05.2015
@@ -182,6 +192,9 @@ Retest: 19.05.2015
 Retest: 21.05.2015
         Later, on 21.05.2015, after the test worked for “pear”, another one was made for the English word “orange” and, like “pear”, returned the right list from the Word Reference site.
         This time the word ”păr” became “par” as well as other proper translations of “pear” as the Romanian diacritics were eliminated.
+Retest: 28.05.2015
+        On 28.05.2015 the test once again passed as the English sentence "I like you" returned the correct Romanian translation "imi placi".
+
 
 
 		

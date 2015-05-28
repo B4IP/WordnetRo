@@ -5,6 +5,9 @@ import translate.apis.Translation;
 import translate.factory.API;
 import translate.factory.TranslateAPIFactory;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -72,6 +75,97 @@ public class TranslateAPIFactoryTest {
 
         Translation result4=TranslateAPIFactory.atomicTranslate(str, API.WordReference,"en","ro");
         checkIfNotContainsTranslation(result4, expResult);
+
+    }
+    @Test
+    public void atomicTranslateTestExpr2(){
+        String str="I hope it succeeds";
+        Set<String> expected = new HashSet<>();
+        expected.add("Sper sa reuseasca");
+        expected.add("Sper ca reuseste");
+        Translation result=TranslateAPIFactory.atomicTranslate(str, API.Google,"en","ro");
+
+        boolean found =false;
+        for (String s : result) {
+            if (expected.contains(s)){
+                found=true;
+                break;
+            }
+        }
+        assertTrue(found);
+
+    }
+
+    @Test
+    public void atomicTranslateTestExpr3(){
+        String str="I hope it succeeds";
+        Set<String> expected = new HashSet<>();
+        expected.add("Sper sa reuseasca");
+        expected.add("Sper ca reuseste");
+        Translation result=TranslateAPIFactory.atomicTranslate(str, API.Dictio,"en","ro");
+
+        boolean found =false;
+        for (String s : result) {
+            if (expected.contains(s)){
+                found=true;
+                break;
+            }
+        }
+        assertFalse(found);
+
+    }
+    @Test
+    public void atomicTranslateTestExpr4(){
+        String str="I hope it succeeds";
+        Set<String> expected = new HashSet<>();
+        expected.add("Sper sa reuseasca");
+        expected.add("Sper ca reuseste");
+        Translation result=TranslateAPIFactory.atomicTranslate(str, API.Gsp,"en","ro");
+
+        boolean found =false;
+        for (String s : result) {
+            if (expected.contains(s)){
+                found=true;
+                break;
+            }
+        }
+        assertFalse(found);
+
+    }
+    @Test
+    public void atomicTranslateTestExpr5(){
+        String str="I hope it succeeds";
+        Set<String> expected = new HashSet<>();
+        expected.add("Sper sa reuseasca");
+        expected.add("Sper ca reuseste");
+        Translation result=TranslateAPIFactory.atomicTranslate(str, API.Hallo,"en","ro");
+
+        boolean found =false;
+        for (String s : result) {
+            if (expected.contains(s)){
+                found=true;
+                break;
+            }
+        }
+        assertFalse(found);
+
+    }
+    @Test
+    public void atomicTranslateTestExpr6(){
+        String str="I hope it succeeds";
+        Set<String> expected = new HashSet<>();
+        expected.add("Sper sa reuseasca");
+        expected.add("Sper ca reuseste");
+        Translation result=TranslateAPIFactory.atomicTranslate(str, API.WordReference,"en","ro");
+
+        boolean found =false;
+        for (String s : result) {
+            if (expected.contains(s)){
+                found=true;
+                break;
+            }
+        }
+        assertFalse(found);
 
     }
 }

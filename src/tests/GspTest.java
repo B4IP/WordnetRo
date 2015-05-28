@@ -7,6 +7,7 @@ import translate.apis.Translation;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -26,6 +27,21 @@ public class GspTest {
 
         for (String s : result) {
             assertTrue(translation.contains(s));
+        }
+
+
+    }
+    @Test
+    public void getCandidatesTest_2() {
+        Gsp gsp = new Gsp("en", "ro");
+        Set<String> expected = new HashSet<String>();
+        expected.add("Imi place o carte");
+
+
+        Translation result = gsp.getCandidates("I like a book");
+
+        for (String s : result) {
+            assertFalse(expected.contains(s));
         }
 
 
