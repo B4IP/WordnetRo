@@ -1,0 +1,11 @@
+.register-input {
+	margin-right: 5%;
+}
+
+.register-input:last-child {
+	margin-right: 0;
+}
+
+.register-pass {
+	margin-right: 0;
+}
