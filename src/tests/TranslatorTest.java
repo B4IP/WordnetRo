@@ -32,12 +32,13 @@ public class TranslatorTest
     @Test
     public void TestTranslatorFromDefinition()
     {
+        
         System.out.println("--- translate word from definition ---");
         
         String returnedWordFromDefinition ;
         
         Translator translator = new Translator();
-        
+        /*
 	returnedWordFromDefinition = translator.translateFromDefinition("apple",POS.NOUN,"round red fruit");
         
 	System.out.println(returnedWordFromDefinition);
@@ -71,14 +72,14 @@ public class TranslatorTest
 	returnedWordFromDefinition = translator.translateFromDefinition("illuminate",POS.VERB,"to light up");
         
 	System.out.println(returnedWordFromDefinition);
-        
+        */
         //checkIfContainsTranslation("a lumina",returnedWordFromDefinition);
         
 	returnedWordFromDefinition = translator.translateFromDefinition("SUN",POS.NOUN,"STAR");
         
 	System.out.println(returnedWordFromDefinition);
         
-        //checkIfContainsTranslation("soare",returnedWordFromDefinition);
+        checkIfContainsTranslation("soare",returnedWordFromDefinition);
     }
     
     /**
@@ -96,8 +97,8 @@ public class TranslatorTest
         
 	System.out.println(returnedWordFromSentence);
         
-        //checkIfContainsTranslation("crud",returnedWordFromSentence);
-        
+        checkIfContainsTranslation("crud",returnedWordFromSentence);
+        /*
 	returnedWordFromSentence = translator.translateFromSentence("shadow",POS.NOUN,"I see this trees' shadow");
         
 	System.out.println(returnedWordFromSentence);
@@ -119,11 +120,11 @@ public class TranslatorTest
 	returnedWordFromSentence = translator.translateFromSentence("Shadow",POS.NOUN,"I see my Shadow at dawn");
         
 	System.out.println(returnedWordFromSentence);
-        
+        */
         //checkIfContainsTranslation("umbră",returnedWordFromSentence);
     }
     
-    /*
+    
     private void checkIfContainsTranslation(String result, String expResult) {
         boolean found = false;
         
@@ -134,5 +135,5 @@ public class TranslatorTest
         
         assertTrue(found);
     }
-    */
+    
 }
