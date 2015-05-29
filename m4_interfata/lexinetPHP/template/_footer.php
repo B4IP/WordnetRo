@@ -14,7 +14,7 @@
 		},1000);
 
 		setTimeout(function(){
-			$('.search-input').css('opacity', '1');
+			$('.search-input, .search-input-edit').css('opacity', '1');
 			$('.search-input').css('margin-top', '30px');
 		},1500)
 

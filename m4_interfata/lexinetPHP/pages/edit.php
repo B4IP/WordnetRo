@@ -67,7 +67,7 @@ $cuvant=$resultArray;
 
 <form action="" method="post" enctype="multipart/form-data">
 		
-		<table cellpadding="0" cellspacing="0" border="0">
+		<table class='edit-table' cellpadding="0" cellspacing="0" border="0">
 			
 						
 			<tr>
@@ -75,7 +75,7 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="ID_cuvant_rom" id="ID_cuvant_rom" 
-						value="<?php echo $objForm->stickyText('ID_cuvant_rom', $cuvant['ID_cuvant_rom']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('ID_cuvant_rom', $cuvant['ID_cuvant_rom']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			<tr>
@@ -84,7 +84,7 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="cuvant_rom" id="cuvant_rom" 
-						value="<?php echo $objForm->stickyText('cuvant_rom', $cuvant['cuvant_rom']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('cuvant_rom', $cuvant['cuvant_rom']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			<tr>
@@ -92,7 +92,7 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="cuvant_eng" id="cuvant_eng" 
-						value="<?php echo $objForm->stickyText('cuvant_eng', $cuvant['cuvant_eng']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('cuvant_eng', $cuvant['cuvant_eng']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			
@@ -100,7 +100,7 @@ $cuvant=$resultArray;
 				<th><label for="glossa">Glossa Engleza: *</label></th>
 				<td>
 					<textarea name="glossa" id="glossa" cols="" rows=""
-						class="search-input search-input--block"><?php echo $objForm->stickyText('glossa', $cuvant['glossa']); ?></textarea>
+						class="search-input-edit search-input-edit--block"><?php echo $objForm->stickyText('glossa', $cuvant['glossa']); ?></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -108,7 +108,7 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="ID_cuvant_eng_FK" id="ID_cuvant_eng_FK" 
-						value="<?php echo $objForm->stickyText('ID_cuvant_eng_FK', $cuvant['ID_cuvant_eng_FK']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('ID_cuvant_eng_FK', $cuvant['ID_cuvant_eng_FK']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			<tr>
@@ -116,14 +116,14 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="modificat" id="modificat" 
-						value="<?php echo $objForm->stickyText('modificat', $cuvant['modificat']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('modificat', $cuvant['modificat']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			<tr>
 				<th><label for="glossa_tradusa">Glossa Romana: *</label></th>
 				<td>
 					<textarea name="glossa_tradusa" id="glossa_tradusa" cols="" rows=""
-						class="search-input search-input--block"><?php echo $objForm->stickyText('glossa_tradusa', $cuvant['glossa_tradusa']); ?></textarea>
+						class="search-input-edit search-input-edit--block"><?php echo $objForm->stickyText('glossa_tradusa', $cuvant['glossa_tradusa']); ?></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -131,7 +131,7 @@ $cuvant=$resultArray;
 				<td>
 					
 					<input type="text" name="POS" id="POS" 
-						value="<?php echo $objForm->stickyText('POS', $cuvant['POS']); ?>" class="search-input" />
+						value="<?php echo $objForm->stickyText('POS', $cuvant['POS']); ?>" class="search-input-edit" />
 				</td>
 			</tr>
 			

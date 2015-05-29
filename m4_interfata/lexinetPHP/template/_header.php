@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="menu">
-		<a href="/" style="position:absolute">
+		<a href="http://students.info.uaic.ro/~dragos.ivan/lexinetPHP/" style="position:absolute">
 			<img src="img/logo.png" class="menu-logo">
 		</a>
 		<div class="initial-menu">
