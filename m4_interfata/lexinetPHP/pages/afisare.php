@@ -15,7 +15,7 @@ $resultArray=$db->fetchAll($sql);
 
 
 
-
+<section class='header-intro'>
 <div class="search-results-wrapper">
 		<h1 class="search-title">Rezultate returnate pentru:</h1>
 		<h1 class="search-title-word"><?php echo $post;?></h1>
@@ -37,6 +37,7 @@ foreach($resultArray as $key 	)
 ?>
 
 	</div>
+</section>
 
 
 

@@ -1,9 +1,9 @@
 <?php
 class Dbase {
 
-	private $_host = "localhost";
-	private $_user = "root";
-	private $_password = "";
+	private $_host = "85.122.23.145";
+	private $_user = "lexinet";
+	private $_password = "4nlV3NA1jg";
 	private $_name = "lexinet";
 	
 	private $_conndb = false;
