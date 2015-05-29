@@ -1,0 +1,3 @@
+Drugu, Papara, Mitocariu, Panaitiu: back-end server, conexiunea cu baza de date, quey-uri, trimiterea datelor catre interfata.
+Ivan, Spinu: interfata propriu-zisa
+Ivan: interfata site-ului de administrare

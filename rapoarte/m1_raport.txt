@@ -1,0 +1,31 @@
+
+Ruxandra Bucos:
+-comunicat cu modulele
+-creare repo Github
+-organizare Github(invite-uri,echipe)
+-fisa cerinte lb. romana
+-fisa cerinte lb. engleza
+-anunturi pe grupul de fb pentru module
+-centralizat informatiile de la module
+-centralizat diagramele modulelor
+
+Bencko Paul:
+-comunicat cu modulele
+-centralizat diagramele modulelor
+-intocmire rapoarte 17 mai
+-anunturi pe grupul de fb pentru module
+-diagrama use case generala
+-pregatit continut site prezentare
+-logo v.1
+
+Statescu Stefan:
+-comunicat cu modulele
+-diagrama de clase generala
+-film prezentare proiect
+ 
+
+Vladut Lihaceanu:
+-comunicat cu modulele
+-creat site-ul de prezentare
+-actualizat site-ul de prezentare
+-logo v.2

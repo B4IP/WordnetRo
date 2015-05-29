@@ -1,0 +1,8 @@
+Modul M2 
+Activitate membri:
+1.Pricop Andrei:documentatie;lucru la clasa WordnetExtractor;
+2.Cotruta Andreea:diagrama de clasa si de secventa;lucru la clasa WordnetExtractor;database;
+3.Mihai Cimpan:lucru la clasele WordnetExtractor, WordnetDatabase, WordnetTranslator;database(scripturi, export tuple);
+4.Jalba Andrei:diagrama de clasa;database;
+5.Petrita Ana:database;
+6.Tudor Simion Florin:lucru la clasele WordnetDatabase si WordnetTranslator;database(scripturi, export tuple);

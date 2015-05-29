@@ -1,0 +1,25 @@
+calin:
+    - factory translate api
+    - api traducere (google, dictio)
+    - extragere informatii googleTranslate2 (returneaza json)
+    - fix buguri
+finaru:
+    - traducere cuvant din propozitie
+    - fix buguri
+    - eliminat sufixe cuvinte
+hodoreanu:
+    -testare traducere
+rusu:
+    - parser xml (nefinalizat)
+    - api traducere (hallo, wordreference)
+berendea:
+    - clasa traducere
+    - api translate (bing, google)
+    - traducere din definitie
+    - levensthein
+    - get, post methods
+    - fix buguri
+tacutanu:
+    - api traducere (gsp)
+sandu:
+    -
